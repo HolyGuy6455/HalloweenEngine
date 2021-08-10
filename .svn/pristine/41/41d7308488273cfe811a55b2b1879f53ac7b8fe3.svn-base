@@ -1,0 +1,9 @@
+package com.gmail.sungmin0511a.gameConstituent;
+
+import java.util.EventListener;
+
+public interface UnitListener extends EventListener {
+	void delete(UnitEvent e);
+
+	void HPEmpty(UnitEvent e);
+}

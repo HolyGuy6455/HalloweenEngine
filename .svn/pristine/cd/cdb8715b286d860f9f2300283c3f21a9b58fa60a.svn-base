@@ -1,0 +1,74 @@
+package com.gmail.sungmin0511a.layoutWitch;
+
+import com.gmail.sungmin0511a.drawAbles.Child;
+
+public class PhysicsWitch extends LayoutWitch {
+	/*
+	 * 
+	 */
+	class PhysicsPosition extends Position {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -7292224913810834384L;
+
+		public PhysicsPosition(Child child) {
+			super(child);
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		protected void findOverlapedGhost() {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		protected void post() {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2008672106063708882L;
+
+	public PhysicsWitch() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void addChild(Child child) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void addGhost(Child child) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void locate() {
+		// TODO Auto-generated method stub
+		super.locate();
+	}
+
+	@Override
+	public void removeChild(Child child) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeGhost(Child child) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

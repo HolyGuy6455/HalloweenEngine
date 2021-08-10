@@ -1,0 +1,76 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.layoutWitch;
+
+import com.gmail.sungmin0511a.drawAbles.Child;
+import com.gmail.sungmin0511a.layoutWitch.FallingWitch.FallingPosition;
+
+/** @author ½Å¼º¹Î */
+public class FallingWitch extends LayoutWitch<FallingPosition> {
+	/** @author ½Å¼º¹Î */
+	public class FallingGhost extends LayoutGhost {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 8979201792467239665L;
+
+		/** @param child */
+		public FallingGhost(Child child) {
+			super(child);
+			// TODO FallingGhost Constructor
+		}
+		
+		/* (non-Javadoc)
+		 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch.Position#post()
+		 */
+		@Override
+		protected void post() {
+			// TODO FallingGhost.post
+		}
+	}
+	
+	/** @author ½Å¼º¹Î */
+	public class FallingPosition extends LayoutPosition {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 5332069775528123593L;
+
+		/** @param child */
+		public FallingPosition(Child child) {
+			super(child);
+			// TODO FallingPosition Constructor
+		}
+		
+		/* (non-Javadoc)
+		 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch.Position#post()
+		 */
+		@Override
+		protected void post() {
+			// TODO FallingPosition.post
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5970640410811032653L;
+
+	/**
+	 * 
+	 */
+	public FallingWitch() {
+		// TODO FallingWitch Constructor
+	}
+	
+	@Override
+	public void addChild(Child child) {
+		positions.put(child, new FallingPosition(child));
+	}
+	
+	@Override
+	protected void sortChilds() {
+		// TODO LayoutWitch.sortChilds()
+	}
+}

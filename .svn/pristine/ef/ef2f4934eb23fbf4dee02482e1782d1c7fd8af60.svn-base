@@ -1,0 +1,9 @@
+package com.gmail.sungmin0511a.gameEvent;
+
+import java.util.EventListener;
+
+public interface OverlapListener extends EventListener {
+	public void overlapEntered(OverlapEvent e);
+	
+	public void overlapExited(OverlapEvent e);
+}

@@ -1,0 +1,85 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Shape;
+
+/** @author ½Å¼º¹Î */
+public class ShapedChild extends Child {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8715440216113566659L;
+	boolean filled;
+	Shape shape;
+
+	/**
+	 * 
+	 */
+	public ShapedChild() {
+		this(new Rectangle());
+	}
+	
+	public ShapedChild(Shape shape) {
+		super();
+		this.shape = shape;
+		filled = false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.drawAbles.Child#contains(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public boolean contains(Child child) {
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.drawAbles.Child#contains(java.awt.Point)
+	 */
+	@Override
+	public boolean contains(Point point) {
+		return shape.contains(point);
+	}
+	
+	public boolean contains(ShapedChild shapedChild) {
+		return shape.contains(shapedChild.getShape().getBounds());
+	}
+
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.drawAbles.Child#draw(java.awt.Graphics2D)
+	 */
+	@Override
+	public void draw(Graphics2D graphics) {
+		if (filled)
+			graphics.fill(shape);
+		else
+			graphics.draw(shape);
+	}
+	
+	/** @return the shape */
+	public Shape getShape() {
+		return shape;
+	}
+	
+	/** @return the filled */
+	public boolean isFilled() {
+		return filled;
+	}
+	
+	/** @param filled
+	 *        the filled to set */
+	public void setFilled(boolean filled) {
+		this.filled = filled;
+	}
+	
+	/** @param shape
+	 *        the shape to set */
+	public void setShape(Shape shape) {
+		this.shape = shape;
+	}
+}

@@ -1,0 +1,112 @@
+package com.gmail.sungmin0511a.layoutWitch;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.gmail.sungmin0511a.costume.Location;
+import com.gmail.sungmin0511a.drawAbles.Child;
+import com.gmail.sungmin0511a.etc.Function;
+import com.gmail.sungmin0511a.etc.ValueException;
+
+public class OceanballWitch extends LayoutWitch {
+	public class OceanballPosition extends LayoutWitch.Position {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 4992260749088228531L;
+		int attractive;
+		Location location;
+		int objectX, objectY;
+		int speed;
+		int x, y;
+		
+		/**
+		 * @param child
+		 * @param x
+		 * @param y
+		 */
+		public OceanballPosition(Child child, int x, int y) {
+			super(child);
+			this.x = objectX = x;
+			this.y = objectY = y;
+			attractive = 800;
+			location = new Location(x, y);
+			child.addCostume(location);
+		}
+
+		@Override
+		protected void findOverlapedGhost() {
+			// TODO Auto-generated method stub
+		}
+
+		public void move(int x, int y) {
+			this.objectX = x;
+			this.objectY = y;
+		}
+
+		@Override
+		protected void post() {
+			double distance = Function.distance(x, y, objectX, objectY);
+			if (distance > speed) {
+				x += speed * (objectX - x) / distance;
+				y += speed * (objectY - y) / distance;
+			} else {
+				x = objectX;
+				y = objectY;
+			}
+			location.setX((this.x - location.getX()) * this.attractive / 1000);
+			location.setX((this.y - location.getY()) * this.attractive / 1000);
+		}
+
+		public void setSpeed(int attractive) throws ValueException {
+			if (attractive <= 1000 && attractive >= 0)
+				this.attractive = attractive;
+			else
+				throw new ValueException(ValueException.ExceptionKey.Between, 0, 1000);
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5546573374413757772L;
+	ArrayList<OceanballPosition> positions;
+
+	@Override
+	public void addChild(Child child) {
+		addChild(child, 0, 0);
+	}
+	
+	public void addChild(Child child, int x, int y) {
+		positions.add(new OceanballPosition(child, x, y));
+	}
+
+	@Override
+	public void addGhost(Child child) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void locate() {
+		super.locate();
+		ArrayList<PositionPair<OceanballPosition>> pairs = PositionPair.getPairs(positions);
+		Iterator<PositionPair<OceanballPosition>> iterator = pairs.iterator();
+		while (iterator.hasNext()) {
+			PositionPair<OceanballPosition> positionPair = iterator.next();
+			if (positionPair.getPosition1().getChild()
+					.contains(positionPair.getPosition2().getChild())) {
+				// TODO OceanBallWitct의 locate함수. 현재 비어있음
+			}
+		}
+	}
+
+	@Override
+	public void removeChild(Child child) {
+		// TODO 자동생성되었다. 현재 비어있음
+	}
+
+	@Override
+	public void removeGhost(Child child) {
+		// TODO Auto-generated method stub
+	}
+}

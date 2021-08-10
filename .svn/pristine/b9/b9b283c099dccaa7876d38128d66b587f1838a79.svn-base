@@ -1,0 +1,29 @@
+package com.gmail.sungmin0511a.gameConstituent;
+
+public class Status {
+	int level;
+	int limit;
+	String name;
+
+	public Status(String name, int level, int limit) {
+		super();
+		this.name = name;
+		this.level = level;
+		this.limit = limit;
+	}
+
+	public void add(int value) {
+		int result = level + value;
+		if (result >= limit)
+			level = limit;
+		else if (result <= 0)
+			level = 0;
+		else
+			level = result;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+}

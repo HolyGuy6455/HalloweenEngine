@@ -1,0 +1,43 @@
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+public class CircleShapedChild extends Child {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6376911934775631372L;
+	protected int radius;
+	
+	/**
+	 * @param radius
+	 */
+	public CircleShapedChild(int radius) {
+		super();
+		this.radius = radius;
+	}
+
+	@Override
+	public boolean contains(Child child) {
+		for (int i = 0; i < 12; i++) {
+			if (child.contains(new Point((int) (Math.cos(i * 30 * Math.PI / 180) * radius),
+					(int) (Math.sin(i * 30 * Math.PI / 180) * radius))))
+				return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean contains(Point point) {
+		if (Math.sqrt(point.x * point.x + point.y * point.y) < radius)
+			return true;
+		else
+			return false;
+	}
+	
+	@Override
+	public void draw(Graphics2D graphics) {
+		graphics.fillOval(-radius, -radius, radius * 2, radius * 2);
+	}
+}

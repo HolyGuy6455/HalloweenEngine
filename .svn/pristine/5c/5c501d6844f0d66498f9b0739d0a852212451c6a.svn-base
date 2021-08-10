@@ -1,0 +1,29 @@
+package com.gmail.sungmin0511a.gameEvent;
+
+import java.util.EventListener;
+import java.util.EventObject;
+
+import com.gmail.sungmin0511a.gameConstituent.Status;
+import com.gmail.sungmin0511a.gameConstituent.Unit;
+
+class StatusEvent extends EventObject {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7282174867224567906L;
+	Unit source;
+	Status status;
+
+	public StatusEvent(Unit source, Status status) {
+		super(source);
+		this.source = source;
+		this.status = status;
+	}
+
+}
+
+interface StatusListener extends EventListener {
+	public void statusIsEmpty(StatusEvent e);
+
+	public void statusIsFull(StatusEvent e);
+}

@@ -1,0 +1,57 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.*;
+
+import com.gmail.sungmin0511a.costume.Painting;
+
+/**
+ * @author ½Å¼º¹Î
+ *
+ */
+public class ShapedChild extends Child {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8715440216113566659L;
+	Shape shape;
+	/**
+	 * 
+	 */
+	public ShapedChild() {
+		this(new Rectangle());
+	}
+	
+	public ShapedChild(Shape shape) {
+		super();
+		this.shape = shape;
+		addCostume(new Painting(Color.black));
+	}
+
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.drawAbles.Child#contains(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public boolean contains(Child child) {
+		return false;
+		// TODO ShapedChild.contains()
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.drawAbles.Child#contains(java.awt.Point)
+	 */
+	@Override
+	public boolean contains(Point point) {
+		return shape.contains(point);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.drawAbles.Child#draw(java.awt.Graphics2D)
+	 */
+	@Override
+	public void draw(Graphics2D graphics) {
+		graphics.draw(shape);
+	}
+}

@@ -1,0 +1,260 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.major;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+import com.gmail.sungmin0511a.drawAbles.Layer;
+import com.gmail.sungmin0511a.drawAbles.Party;
+
+/**
+ * @author 신성민
+ */
+public class Stage {
+	static boolean play;
+	
+	/**
+	 * @return
+	 */
+	public static boolean playing() {
+		return play;
+	}
+
+	Party cursorIcon;
+	JFrame frm;
+	private BufferedImage inGame;		// 출력되는 화면
+	Point mousePosition;
+	JPanel panel;
+	int presentLayer;
+	private Layer root[];					// DrawAble들이 담기는곳
+	Timer timer;
+	Double zoom;							// 카메라 줌
+	
+	/**
+	 * 
+	 */
+	public Stage() {							// 생성자
+		super();
+		presentLayer = 0;
+		frm = new JFrame();
+		panel = new JPanel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 526433531533304543L;
+
+			@Override
+			public void paintComponent(Graphics graphics) {
+				// 그래픽에 출력
+				super.paintComponent(graphics);
+				setOpaque(true);
+				graphics.setClip(0, 0, getSize().width, getSize().height);
+				// 출력되는 그림의 크기를 한정한다
+				Graphics2D g = (Graphics2D) inGame.getGraphics();
+				g.setColor(new Color(250, 250, 250));
+				g.fillRect(0, 0, inGame.getWidth(), inGame.getHeight());
+				root[presentLayer].draw(g);
+				cursorIcon.draw(g);
+				// 가상의 화면에 있는 그림을 실제 그래픽에 그린다
+				graphics.drawImage(inGame, 0, 0, getSize().width, getSize().height, 0, 0,
+						(int) (getSize().width / zoom), (int) (getSize().height / zoom), this);
+			}
+		};
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frm.setResizable(false);
+		frm.setBounds(0, 0, 640, 480);
+		frm.add(panel);
+		frm.setVisible(true);
+		root = new Layer[1];
+		root[0] = new Layer("Stage");
+		inGame = new BufferedImage(640, 460, BufferedImage.TYPE_INT_ARGB);
+		zoom = 1.0;
+		play = true;
+		cursorIcon = new Party("CursorIcon");
+		ImageStorage.getImageStorage();
+		frm.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				getRoot().processMouseEvent(e, MouseEvent.MOUSE_CLICKED);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				getRoot().processMouseEvent(e, MouseEvent.MOUSE_ENTERED);
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				getRoot().processMouseEvent(e, MouseEvent.MOUSE_EXITED);
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				getRoot().processMouseEvent(e, MouseEvent.MOUSE_PRESSED);
+			}
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				getRoot().processMouseEvent(e, MouseEvent.MOUSE_RELEASED);
+			}
+		});
+		frm.addMouseMotionListener(new MouseMotionListener() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				getRoot().processMouseEvent(e, MouseEvent.MOUSE_DRAGGED);
+				try {
+					mousePosition.x = panel.getMousePosition().x;
+					mousePosition.y = panel.getMousePosition().y;
+				} catch (NullPointerException ne) {
+				}
+				// cursorIcon.setLocation(result);
+			}
+			
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				getRoot().processMouseEvent(e, MouseEvent.MOUSE_MOVED);
+				try {
+					mousePosition.x = panel.getMousePosition().x;
+					mousePosition.y = panel.getMousePosition().y;
+				} catch (NullPointerException ne) {
+				}
+				// cursorIcon.setLocation(result);
+			}
+		});
+		;
+		panel.setOpaque(true);
+		timer = new Timer(10, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				panel.repaint();
+			}
+		});
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				timer.start();
+			}
+		}).run();
+	}
+	
+	/**
+	 * @param l
+	 */
+	public synchronized void addMouseListener(MouseListener l) {
+		frm.addMouseListener(l);
+	}
+	
+	/**
+	 * @param l
+	 */
+	public synchronized void addMouseMotionListener(MouseMotionListener l) {
+		frm.addMouseMotionListener(l);
+	}
+	
+	/**
+	 * @return
+	 */
+	public Party getCursorIcon() {
+		return cursorIcon;
+	}
+	
+	/**
+	 * @return
+	 */
+	public JFrame getFrame() {
+		return frm;
+	}
+	
+	/**
+	 * @return
+	 */
+	public BufferedImage getInGame() {
+		return inGame;
+	}
+	
+	/**
+	 * @return
+	 */
+	public int getPresentLayer() {
+		return presentLayer;
+	}
+	
+	/**
+	 * @return
+	 */
+	public Layer getRoot() {
+		return root[presentLayer];
+	}
+	
+	/**
+	 * @return
+	 */
+	public Timer getTimer() {
+		return timer;
+	}
+	
+	/**
+	 * 
+	 */
+	public void playTheWorld() {
+		play = true;
+	}
+	
+	/**
+	 * @param inGame
+	 */
+	public void setInGame(BufferedImage inGame) {
+		this.inGame = inGame;
+	}
+	
+	/**
+	 * @param presentLayer
+	 */
+	public void setPresentLayer(int presentLayer) {
+		if (root.length < presentLayer + 1) {
+			Layer result[] = new Layer[presentLayer + 1];
+			int i;
+			for (i = 0; i < root.length; i++) {
+				result[i] = root[i];
+			}
+			root = result;
+		}
+		this.presentLayer = presentLayer;
+	}
+	
+	/**
+	 * @param root
+	 */
+	public void setRoot(Layer root) {
+		this.root[presentLayer] = root;
+	}
+	
+	/**
+	 * @param Size
+	 */
+	public void setSize(Dimension Size) {			// 크기조정
+		panel.setSize(Size);
+		frm.setBounds(0, 0, Size.width, Size.height);
+	}
+	
+	/**
+	 * @param timer
+	 */
+	public void setTimer(Timer timer) {
+		this.timer = timer;
+	}
+	
+	/**
+	 * 
+	 */
+	public void stopTheWorld() {
+		play = false;
+	}
+}

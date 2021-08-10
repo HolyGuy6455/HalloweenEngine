@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.costume;
+
+import java.awt.Graphics;
+
+/**
+ * @author 신성민
+ */
+public interface Costume {
+	/**
+	 * Child가 그려지기 전에 하는 작업을 정의합니다.
+	 * @param graphics
+	 */
+	public abstract void dressUp(Graphics graphics);
+	
+	/**
+	 * Child가 그려진 후 원래대로 정리하는 작업을 정의합니다.
+	 * @param graphics
+	 */
+	public abstract void unDress(Graphics graphics);
+}

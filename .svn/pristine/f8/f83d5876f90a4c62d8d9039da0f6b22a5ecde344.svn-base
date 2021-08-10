@@ -1,0 +1,39 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.costume;
+
+import java.awt.Graphics2D;
+
+/**
+ * @author ½Å¼º¹Î
+ */
+public class Rotation implements Costume {
+	private double degree;
+	
+	/**
+	 * @param degree
+	 */
+	public Rotation(double degree) {
+		super();
+		this.degree = degree;
+	}
+	
+	@Override
+	public void dressUp(Graphics2D graphics) {
+		graphics.rotate(degree);
+	}
+	
+	public double getDegree() {
+		return degree;
+	}
+	
+	public void setDegree(double degree) {
+		this.degree = degree;
+	}
+
+	@Override
+	public void unDress(Graphics2D graphics) {
+		graphics.rotate(-degree);
+	}
+}

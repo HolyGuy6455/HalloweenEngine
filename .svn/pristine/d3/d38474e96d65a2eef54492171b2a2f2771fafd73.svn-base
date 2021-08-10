@@ -1,0 +1,78 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.layoutWitch;
+
+import com.gmail.sungmin0511a.drawAbles.Child;
+
+/** @author ½Å¼º¹Î */
+public class PhysicsWitch extends LayoutWitch {
+	/** @author ½Å¼º¹Î */
+	public class PhysicsPosition extends Position {
+		/** @param child */
+		public PhysicsPosition(Child child) {
+			super(child);
+			// TODO Auto-generated constructor stub
+		}
+		
+		/* (non-Javadoc)
+		 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch.Position#findOverlapedGhost()
+		 */
+		@Override
+		protected void findOverlapedGhost() {
+			// TODO Auto-generated method stub
+		}
+		
+		/* (non-Javadoc)
+		 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch.Position#post()
+		 */
+		@Override
+		protected void post() {
+			// TODO Auto-generated method stub
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4500786642863869229L;
+
+	/**
+	 * 
+	 */
+	public PhysicsWitch() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#addChild(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public void addChild(Child child) {
+		// TODO Auto-generated method stub
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#addGhost(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public void addGhost(Child child) {
+		// TODO Auto-generated method stub
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#removeChild(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public void removeChild(Child child) {
+		// TODO Auto-generated method stub
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#removeGhost(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public void removeGhost(Child child) {
+		// TODO Auto-generated method stub
+	}
+}

@@ -1,0 +1,5 @@
+package com.gmail.sungmin0511a.gameConstituent;
+
+public interface StatusArrayKey {
+
+}

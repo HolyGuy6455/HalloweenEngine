@@ -1,0 +1,74 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.layoutWitch;
+
+import java.util.Iterator;
+
+import com.gmail.sungmin0511a.costume.Location;
+import com.gmail.sungmin0511a.drawAbles.Child;
+import com.gmail.sungmin0511a.layoutWitch.FallingWitch.FallingPosition;
+
+/** @author ½Å¼º¹Î */
+public class FallingWitch extends LayoutWitch<FallingPosition> {
+	/** @author ½Å¼º¹Î */
+	public class FallingPosition extends LayoutPosition {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 5332069775528123593L;
+		Location childLocation;
+		double speedX;
+		double speedY;
+
+		/** @param child */
+		public FallingPosition(Child child) {
+			super(child);
+			childLocation = new Location();
+			child.addCostume(childLocation);
+		}
+		
+		@Override
+		protected void post() {
+			speedX += gravity * (Math.sin(direction));
+			speedY += gravity * (Math.cos(direction));
+			childLocation.translate(speedX, speedY);
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5970640410811032653L;
+	double direction;
+	double gravity;
+
+	/**
+	 * 
+	 */
+	public FallingWitch() {
+		gravity = 1;
+		direction = 0;
+	}
+	
+	@Override
+	public void addChild(Child child) {
+		positions.put(child, new FallingPosition(child));
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#locate()
+	 */
+	@Override
+	public void locate() {
+		super.locate();
+		Iterator<FallingPosition> iterator = positions.values().iterator();
+		while (iterator.hasNext()) {
+			FallingPosition fallingPosition = (FallingWitch.FallingPosition) iterator.next();
+		}
+	}
+
+	@Override
+	protected void sortChilds() {
+	}
+}

@@ -1,0 +1,164 @@
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+import com.gmail.sungmin0511a.costume.Costume;
+
+/**
+ * 다른 Child들을 포함할 수 있습니다.
+ * @author 신성민
+ */
+public class Party extends Child {
+	private static final long serialVersionUID = -1553145451371694718L;
+	protected LinkedList<Child> members;
+	protected String name;
+
+	/**
+	 * 
+	 */
+	public Party(String name) {
+		super();
+		this.name = name;
+		members = new LinkedList<Child>();
+	}
+	
+	/**
+	 * Child를 추가합니다. 추가된 Child의 root는 이 Container가 됩니다.
+	 * @param child
+	 *        추가할 Child입니다.
+	 */
+	public void add(Child child) {
+		if (child == null)
+			return;
+		if (child.belong != null)
+			child.belong.remove(child);
+		members.add(child);
+		child.belong = this;
+	}
+
+	@Override
+	public boolean contains(Child child) {
+		for (Child child2 : members) {
+			if (child2 instanceof Child && (child2.contains(child) || child.contains(child2)))
+				return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 좌표가 겹치는지 확인합니다. 만약 포함되어있는 Child중 범위 내에 해당좌표가 포함되어있다면
+	 * 참값을 반환할 것입니다.
+	 */
+	@Override
+	public boolean contains(Point point) {
+		for (Child Child : members) {
+			if (Child instanceof Child && Child.contains(point))
+				return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Child들을 그립니다. 주어진 Graphics에 포함되어있는 Child들을 차례대로 그립니다.
+	 */
+	@Override
+	public void draw(Graphics2D graphics) {
+		for (Child child : members) {
+			Iterator<Costume> iterator = child.getCostumes().iterator();
+			while (iterator.hasNext())
+				((Costume) iterator.next()).dressUp(graphics);
+			;
+			child.draw(graphics);
+			;
+			iterator = child.getCostumes().iterator();
+			while (iterator.hasNext())
+				((Costume) iterator.next()).unDress(graphics);
+		}
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		removeAll();
+		super.finalize();
+	}
+
+	/**
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public LinkedList<Child> getMember() {
+		return (LinkedList<Child>) members.clone();
+	}
+	
+	/**
+	 * 마우스 이벤트를 받습니다. 자신뿐만 아니라 포함하고 있는 Child에게도 마우스 이벤트를
+	 * 전달합니다.
+	 */
+	@Override
+	public Child processMouseEvent(MouseEvent e, int mouseType) {
+		Child result = super.processMouseEvent(e, mouseType);
+		for (Child theDrawn : members) {
+			if (theDrawn instanceof Child) {
+				Child c = theDrawn.processMouseEvent(e, mouseType);
+				if (c != null)
+					result = c;
+			} else
+				break;
+		}
+		return result;
+	}
+	
+	/**
+	 * Child를 제외시킵니다. 제외된 Child의 belong은 null이 됩니다.
+	 * @param child
+	 *        제외시킬 Child입니다.
+	 */
+	public void remove(Child child) {
+		child.belong = null;
+		members.remove(child);
+	}
+	
+	/**
+	 * 모든 Child를 제외시킵니다.
+	 */
+	public void removeAll() {
+		Iterator<Child> iterator = members.iterator();
+		while (iterator.hasNext()) {
+			Child child = (Child) iterator.next();
+			child.belong = null;
+			members.remove(child);
+		}
+	}
+	
+	/**
+	 * @param child
+	 * @param index
+	 */
+	public void setDepth(Child child, int index) {
+		members.remove(child);
+		members.add(index, child);
+	}
+	
+	/**
+	 * 현재 가지고 있는 child들의 갯수를 반환합니다.
+	 * @return 가지고 있는 Child들의 갯수입니다.
+	 */
+	public int size() {
+		return members.size();
+	}
+	
+	@Override
+	public String toString() {
+		String result = super.toString() + "(members : ";
+		Iterator<Child> iterator = members.iterator();
+		while (iterator.hasNext()) {
+			Child child = (Child) iterator.next();
+			result += (Object) child.toString() + ", ";
+		}
+		return result.substring(0, result.length() - 2) + ")";
+	}
+}

@@ -1,0 +1,111 @@
+package com.gmail.sungmin0511a.hComponent;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import com.gmail.sungmin0511a.costume.Painting;
+import com.gmail.sungmin0511a.drawAbles.Child;
+import com.gmail.sungmin0511a.drawAbles.ShapedChild;
+
+public class HButton extends Child {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3656563497527889817L;
+	Child mouseOn;
+	Child mouseOver;
+	Child mousePressed;
+	private int nowWhat;
+	Child shape;
+
+	public HButton() {
+		super();
+		nowWhat = 0;
+		mouseOver = new ShapedChild(new Rectangle(100, 50));
+		mouseOver.addCostume(new Painting(Color.darkGray));
+		mouseOn = new ShapedChild(new Rectangle(100, 50));
+		mouseOver.addCostume(new Painting(Color.gray));
+		mousePressed = new ShapedChild(new Rectangle(100, 50));
+		mouseOver.addCostume(new Painting(Color.lightGray));
+		shape = mouseOver;
+		addEventListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// nothing
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				nowWhat = 1;
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				if (nowWhat != 2)
+					nowWhat = 0;
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				nowWhat = 2;
+			}
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				nowWhat = 0;
+			}
+		});
+	}
+	
+	@Override
+	public boolean contains(Child child) {
+		return shape.contains(child);
+	}
+	
+	@Override
+	public boolean contains(Point point) {
+		return shape.contains(point);
+	}
+	
+	@Override
+	public void draw(Graphics2D graphics) {
+		// g.translate(getLocation().x, getLocation().y);
+		switch (nowWhat) {
+			case 0:
+				mouseOver.draw(graphics);
+				break;
+			case 1:
+				mouseOn.draw(graphics);
+				break;
+			case 2:
+				mousePressed.draw(graphics);
+				break;
+			default:
+				break;
+		}
+	}
+	
+	/** @param mouseOn */
+	public void setMouseOn(Child mouseOn) {
+		this.mouseOn = mouseOn;
+	}
+	
+	/** @param mouseOver */
+	public void setMouseOver(Child mouseOver) {
+		this.mouseOver = mouseOver;
+	}
+	
+	/** @param mousePressed */
+	public void setMousePressed(Child mousePressed) {
+		this.mousePressed = mousePressed;
+	}
+	
+	/** @param shape */
+	public void setShape(Child shape) {
+		this.shape = shape;
+	}
+}

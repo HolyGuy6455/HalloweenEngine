@@ -1,0 +1,21 @@
+package com.gmail.sungmin0511a.etc;
+
+import java.util.ArrayList;
+
+final public class Function {
+	@SuppressWarnings("unchecked")
+	public static <E> ArrayList<E> reverseList(ArrayList<E> arrayList) {
+		ArrayList<E> result = new ArrayList<E>();
+		Object[] e = arrayList.toArray();
+		for (int i = e.length; i > 0; i--) {
+			result.add((E) e[i]);
+		}
+		return result;
+	}
+	
+	public static <E> E popArrayList(ArrayList<E> arrayList) {
+		E result = arrayList.get(arrayList.size() - 1);
+		arrayList.remove(result);
+		return result;
+	}
+}

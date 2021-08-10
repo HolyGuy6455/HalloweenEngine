@@ -1,0 +1,16 @@
+package com.gmail.sungmin0511a.gameEvent;
+
+import java.util.EventObject;
+
+import com.gmail.sungmin0511a.layoutWitch.LayoutGhost;
+
+public class OverlapEvent extends EventObject {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5741727381321494991L;
+
+	public OverlapEvent(LayoutGhost source) {
+		super(source);
+	}
+}

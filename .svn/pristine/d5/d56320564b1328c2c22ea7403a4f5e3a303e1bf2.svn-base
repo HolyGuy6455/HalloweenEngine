@@ -1,0 +1,31 @@
+package com.gmail.sungmin0511a.etc;
+
+import java.awt.Point;
+import java.util.ArrayList;
+
+final public class Function {
+	public static double distance(int x1, int y1, int x2, int y2) {
+		int width = x1 - x2, height = y1 - y2;
+		return Math.sqrt(width * width + height * height);
+	}
+
+	public static double distance(Point point1, Point point2) {
+		return distance(point1.x, point1.y, point2.x, point2.y);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static <E> ArrayList<E> reverseList(ArrayList<E> arrayList) {
+		ArrayList<E> result = new ArrayList<E>();
+		Object[] e = arrayList.toArray();
+		for (int i = e.length; i > 0; i--) {
+			result.add((E) e[i]);
+		}
+		return result;
+	}
+	
+	public static <E> E popArrayList(ArrayList<E> arrayList) {
+		E result = arrayList.get(arrayList.size() - 1);
+		arrayList.remove(result);
+		return result;
+	}
+}

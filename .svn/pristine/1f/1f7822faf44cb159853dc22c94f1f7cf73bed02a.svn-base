@@ -1,0 +1,158 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.layoutWitch;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.gmail.sungmin0511a.costume.Location;
+import com.gmail.sungmin0511a.drawAbles.Child;
+
+/** @author 신성민 */
+public class BirdEyeWitch implements LayoutWitch {
+	/** @author 신성민 */
+	public class BirdEyeGhost extends LayoutGhost {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 6204515454462075347L;
+
+		/** @param child */
+		public BirdEyeGhost(Child child) {
+			super(child);
+			// TODO BirdEyeGhost.Constructor()
+		}
+		
+		/* (non-Javadoc)
+		 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch.Position#post()
+		 */
+		@Override
+		protected void post() {
+			// TODO BirdEyeGhost.post()
+		}
+	}
+	
+	/** @author 신성민 */
+	public class BirdEyePosition extends LayoutPosition {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -5986177422829990190L;
+		Location childLocation;		// Child의 위치
+		double locationX;			// 이 Postion의 실제위치 X좌표값
+		double locationY;			// 이 Postion의 실제위치 Y좐표값
+		
+		public BirdEyePosition(Child child) {
+			this(child, 0.0, 0.0);
+		}
+
+		/** @param child */
+		public BirdEyePosition(Child child, double x, double y) {
+			super(child);
+			locationX = x;
+			locationY = y;
+			childLocation = new Location();
+			child.addCostume(childLocation);
+		}
+		
+		@Override
+		protected void findOverlapedGhost() {
+			// TODO BirdEyePosition.findOverlapedGhost()
+		}
+		
+		/** @return the locationX */
+		public double getLocationX() {
+			return locationX;
+		}
+		
+		/** @return the locationY */
+		public double getLocationY() {
+			return locationY;
+		}
+
+		@Override
+		protected void post() {
+			System.out.println((Math.cos(rotateDegree) * locationX - Math.sin(rotateDegree)
+																		* locationY)
+								* scaleX);
+			childLocation.setX((Math.cos(rotateDegree) * locationX - Math.sin(rotateDegree)
+																		* locationY)
+								* scaleX);
+			childLocation.setY((Math.sin(rotateDegree) * locationX + Math.cos(rotateDegree)
+																		* locationY)
+								* scaleY);
+		}
+		
+		public void setLocation(double x, double y) {
+			locationX = x;
+			locationY = y;
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5677363341624393667L;
+	private ArrayList<BirdEyePosition> positions;
+	private double rotateDegree;
+	private double scaleX;
+	private double scaleY;
+
+	/**
+	 * 
+	 */
+	public BirdEyeWitch() {
+		positions = new ArrayList<BirdEyePosition>();
+		scaleX = 100.0;
+		scaleY = 100.0;
+		rotateDegree = 0.0;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#locate()
+	 */
+	@Override
+	public void locate() {
+		try {
+			Iterator<BirdEyePosition> iterator = positions.iterator();
+			while (iterator.hasNext()) {
+				iterator.next().post();
+			}
+		} catch (NullPointerException e) {
+			System.out.println("e " + e.getMessage());
+			System.out.println("p " + positions);
+		}
+	}
+
+	@Override
+	public void addChild(Child child) {
+		addChild(child, 0, 0);
+	}
+	
+	public void addChild(Child child, double x, double y) {
+		if (getPosition(child) == null)
+			positions.add(new BirdEyePosition(child));
+	}
+	
+	@Override
+	public void addGhost(Child child) {
+		// TODO BirdEyeWitch.addGhost
+	}
+	
+	@Override
+	public void removeChild(Child child) {
+		// TODO BirdEyeWitch.removeChild
+	}
+	
+	@Override
+	public void removeGhost(Child child) {
+		// TODO BirdEyeWitch.removeGhost
+	}
+	
+	@Override
+	public <E extends LayoutPosition> E getPosition(Child child) {
+		return null;
+		// TODO LayoutWitch.getPosition()
+	}
+}

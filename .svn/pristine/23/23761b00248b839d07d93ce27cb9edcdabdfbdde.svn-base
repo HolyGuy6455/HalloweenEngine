@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.costume;
+
+import java.awt.geom.Point2D;
+
+/** @author ½Å¼º¹Î */
+public interface PointCostume extends Costume {
+	/** @param position */
+	public abstract void dressUp(Point2D position);
+	
+	/** @param position */
+	public abstract void unDress(Point2D position);
+}

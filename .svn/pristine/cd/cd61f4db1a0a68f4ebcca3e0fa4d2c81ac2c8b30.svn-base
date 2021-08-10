@@ -1,0 +1,62 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.costume;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+/** @author ½Å¼º¹Î */
+public class Bright implements Costume {
+	int bright;
+	private Color before;
+
+	/**
+	 * 
+	 */
+	public Bright(int bright) {
+		this.bright = bright;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.costume.Costume#dressUp(java.awt.Graphics2D)
+	 */
+	@Override
+	public void dressUp(Graphics2D graphics) {
+		before = graphics.getColor();
+		int R = before.getRed() + bright;
+		R = (R > 255) ? 255 : ((R < 0) ? 0 : R);
+		int G = before.getGreen() + bright;
+		G = (G > 255) ? 255 : ((G < 0) ? 0 : G);
+		int B = before.getBlue() + bright;
+		B = (B > 255) ? 255 : ((B < 0) ? 0 : B);
+		graphics.setColor(new Color(R, G, B));
+	}
+	
+	/** @return the bright */
+	public int getBright() {
+		return bright;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.costume.Costume#getPriority()
+	 */
+	@Override
+	public int getPriority() {
+		return MAX_PRIORITY;
+	}
+	
+	/** @param bright
+	 *        the bright to set */
+	public void setBright(int bright) {
+		this.bright = bright;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.costume.Costume#unDress(java.awt.Graphics2D)
+	 */
+	@Override
+	public void unDress(Graphics2D graphics) {
+		graphics.setColor(before);
+	}
+}

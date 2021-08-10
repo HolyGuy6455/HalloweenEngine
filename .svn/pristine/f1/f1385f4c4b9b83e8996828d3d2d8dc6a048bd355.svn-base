@@ -1,0 +1,56 @@
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+import com.gmail.sungmin0511a.major.ImageStorage;
+
+public class TiltedImagedChild extends ImagedChild {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8177002866196066875L;
+	private double degree;
+	boolean loaded;
+
+	public TiltedImagedChild(Point location, String skin, double degree) {
+		super(location, skin);
+		this.degree = degree;
+		loaded = false;
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		ImageStorage observer = ImageStorage.getImageStorage();
+		if (image == null)
+			image = observer.image(skin);
+		if (loaded) {
+			Graphics2D g2 = (Graphics2D) g;
+			g2.translate(getLocation().x, getLocation().y);
+			g2.rotate(degree);
+			try {
+			g2.drawImage(image, -bounds.width / 2, -bounds.height / 2, bounds.width / 2,
+					bounds.height / 2, 0, 0, image.getWidth(observer), image.getHeight(observer),
+					observer);
+			} catch (NullPointerException ne) {
+				System.out.println("sss");
+			}
+			g2.rotate(-degree);
+			g2.translate(-getLocation().x, -getLocation().y);
+		} else if (observer.isImageLoaded(skin)) {
+			loaded = true;
+			if (bounds == null)
+				bounds = new Dimension(image.getWidth(observer), image.getHeight(observer));
+			setBounds(bounds);
+		} else
+			return;
+	}
+	
+	public void setDegree(double degree) {
+		this.degree = degree;
+	}
+
+}

@@ -1,0 +1,209 @@
+package com.gmail.sungmin0511a.layoutWitch;
+
+import java.awt.Dimension;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.gmail.sungmin0511a.drawAbles.Child;
+import com.gmail.sungmin0511a.etc.ValueException;
+
+public class GridWitch extends LayoutWitch {
+	public class GridPosition extends LayoutWitch.Position {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1077347606367692435L;
+		int attractive;
+		int width, height;
+		int x, y;
+
+		public GridPosition() {
+			this(null, 0, 0, 1, 1);
+		}
+
+		public GridPosition(Child child, int x, int y, int width, int height) {
+			super(child);
+			this.x = x;
+			this.y = y;
+			this.width = width;
+			this.height = height;
+			attractive = 800;
+		}
+
+		@Override
+		protected void findOverlapedGhost() {
+			// TODO Auto-generated method stub
+
+		}
+
+		public int getX() {
+			return x;
+		}
+
+		public int getY() {
+			return y;
+		}
+
+		public boolean overlaped(int x, int y, int width, int height) {
+			if (this.x <= x + width - 1 && this.x + this.width - 1 >= x)
+				if (this.y <= y + height - 1 && this.y + this.height - 1 >= y)
+					return true;
+			return false;
+		}
+
+		@Override
+		protected void post() {
+			Point locatePoint = getChild().getLocation();
+			locatePoint.x += (this.x * space - getChild().getLocation().x) * this.attractive / 1000;
+			locatePoint.y += (this.y * space - getChild().getLocation().y) * this.attractive / 1000;
+		}
+
+		public void setPosition(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
+
+		public void setSpeed(int attractive) throws ValueException {
+			if (attractive <= 1000 && attractive >= 0)
+				this.attractive = attractive;
+			else
+				throw new ValueException(ValueException.ExceptionKey.Between, 0, 1000);
+		}
+	}
+
+	public class GridPositionGroup extends GridPosition {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -5272339379043740879L;
+		GridPosition member[];
+
+		public GridPositionGroup(GridPosition member[]) {
+			this.member = member;
+		}
+
+		@Override
+		public boolean overlaped(int x, int y, int width, int height) {
+			for (int i = 0; i < member.length; i++)
+				if (member[i].overlaped(x, y, width, height))
+					return true;
+			return false;
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 747210840174897067L;
+
+	Dimension dimension;
+	boolean overlap;
+	ArrayList<GridPosition> positions;
+	int space;
+	boolean totalFit;
+
+	public GridWitch() {
+		this(false, false, 16);
+	}
+
+	public GridWitch(boolean overlap, boolean totalFit, int space) {
+		super();
+		positions = new ArrayList<GridPosition>();
+		this.overlap = overlap;
+		this.totalFit = totalFit;
+		this.space = space;
+	}
+
+	@Override
+	public void addChild(Child child) {
+		Point point = new Point((int) Math.floor((child.getLocation().x) / space), (int) Math.floor((child
+				.getLocation().y) / space));
+
+		if (!overlap && overlapedChilds(point.x, point.y, 1, 1).length != 0) {
+			System.out.println("기존의 Child와 겹칩니다");
+		}
+		if (getPosition(child) == null)
+			positions.add(new GridPosition(child, point.x, point.y, 1, 1));
+	}
+
+	/*
+	 * public void addChild(Child child,int x, int y,int width,int height) { //
+	 * (overlapedChilds(child.getLocation().x, child.getLocation().y,
+	 * child.getBounds().width, child.getBounds().height).length == 0) {
+	 * positions.add(new GridPosition(child, x, y, width, height)); } }
+	 * 
+	 * public void addChild(Child child, int x, int y) { addChild(child, x, y,
+	 * 1, 1); }
+	 */
+
+	@Override
+	public void addGhost(Child child) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public GridPosition getPosition(Child child) {
+		Iterator<GridPosition> iterator;
+		try {
+			iterator = positions.iterator();
+		} catch (NullPointerException e) {
+			return null;
+		}
+		while (iterator.hasNext()) {
+			GridPosition gridPosition = iterator.next();
+			if (gridPosition.getChild().equals(child))
+				return gridPosition;
+		}
+		return null;
+	}
+
+	@Override
+	public void locate() {
+		try {
+			Iterator<GridPosition> iterator = positions.iterator();
+			while (iterator.hasNext()) {
+				iterator.next().post();
+			}
+		} catch (NullPointerException e) {
+			System.out.println("e " + e.getMessage());
+			System.out.println("p " + positions);
+		}
+	}
+
+	public GridPosition[] overlapedChilds(int x, int y, int width, int height) {
+		Iterator<GridPosition> iterator = positions.iterator();
+		ArrayList<GridPosition> gridPositions = new ArrayList<GridWitch.GridPosition>();
+		while (iterator.hasNext()) {
+			GridPosition gridPosition = iterator.next();
+			if (gridPosition.overlaped(x, y, width, height))
+				gridPositions.add(gridPosition);
+		}
+		GridPosition result[] = new GridPosition[gridPositions.size()];
+		iterator = gridPositions.iterator();
+		int order = 0;
+		while (iterator.hasNext()) {
+			GridWitch.GridPosition gridPosition = iterator.next();
+			result[order++] = gridPosition;
+		}
+		return result;
+	}
+
+	@Override
+	public void removeChild(Child child) {
+		positions.remove(getPosition(child));
+	}
+
+	@Override
+	public void removeGhost(Child child) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setSpace(int space) {
+		this.space = space;
+	}
+
+}

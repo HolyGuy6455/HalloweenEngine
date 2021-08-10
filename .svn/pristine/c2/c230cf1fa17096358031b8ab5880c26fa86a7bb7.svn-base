@@ -1,0 +1,81 @@
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+
+import com.gmail.sungmin0511a.major.ImageStorage;
+
+public class ImagedChild extends RectangleShapedChild {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7120430604946824600L;
+	protected transient Image image;
+	boolean reverse;
+	protected String skin;
+
+	public ImagedChild(Point location, String skin) {
+		super(location, null);
+		this.skin = skin;
+		ImageStorage observer = ImageStorage.getImageStorage();
+		image = observer.image(skin);
+		reverse = false;
+	}
+	
+	public void changeImage(String skin) {
+		image = null;
+		this.skin = skin;
+		ImageStorage observer = ImageStorage.getImageStorage();
+		image = observer.image(skin);
+	}
+
+	@Override
+	public boolean contains(Child child) {
+		if (bounds == null)
+			return false;
+		return super.contains(child);
+	}
+
+	@Override
+	public boolean contains(Point point) {
+		if (bounds == null)
+			return false;
+		return super.contains(point);
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		ImageStorage observer = ImageStorage.getImageStorage();
+		if (image == null) {
+			image = observer.image(skin);
+		}
+		if (bounds == null && observer.isImageLoaded(skin))
+			bounds = new Dimension(image.getHeight(observer), image.getHeight(observer));
+		if (reverse)
+			g.drawImage(image, getLocation().x + bounds.width, getLocation().y, getLocation().x,
+					getLocation().y + bounds.height, 0, 0,
+					image.getWidth(ImageStorage.getImageStorage()),
+					image.getHeight(ImageStorage.getImageStorage()), ImageStorage.getImageStorage());
+		else
+			g.drawImage(image, getLocation().x, getLocation().y, bounds.width, bounds.height,
+					observer);
+	}
+	
+	@Override
+	public void setBounds(Dimension bounds) {
+		super.setBounds(bounds);
+		// image = image.getScaledInstance(bounds.width,
+		// bounds.height, Image.SCALE_SMOOTH);
+		// ImageStorage.getImageStorage().registerImage(image);
+	}
+	
+	public void setReverse(boolean reverse) {
+		this.reverse = reverse;
+	}
+	
+	public boolean isReverse() {
+		return reverse;
+	}
+}

@@ -1,0 +1,126 @@
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+
+import com.gmail.sungmin0511a.etc.MouseType;
+
+public class Container extends Child {
+	/**
+	 * 다른 Child들을 포함할 수 있습니다.
+	 * @author 신성민
+	 */
+	private static final long serialVersionUID = -1553145451371694718L;
+	protected LinkedList<Child> childs;
+
+	public Container(Point location) {
+		super(location);
+		childs = new LinkedList<Child>();
+	}
+	
+	/**
+	 * Child를 추가합니다. 추가된 Child의 root는 이 Container가 됩니다.
+	 * @param child
+	 *        추가할 Child입니다.
+	 */
+	public void add(Child child) {
+		try {
+			child.root.remove(child);
+		} catch (NullPointerException ne) {
+
+		}
+		childs.add(child);
+		child.root = this;
+	}
+
+	@Override
+	public boolean contains(Child child) {
+		for (Child child2 : childs) {
+			if (child2 instanceof Child && (child2.contains(child) || child.contains(child2)))
+				return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 좌표가 겹치는지 확인합니다. 만약 포함되어있는 Child중 범위 내에 해당좌표가 포함되어있다면
+	 * 참값을 반환할 것입니다.
+	 */
+	@Override
+	public boolean contains(Point point) {
+		for (Child Child : childs) {
+			if (Child instanceof Child && Child.contains(point))
+				return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Child들을 그립니다. 주어진 Graphics에 포함되어있는 Child들을 차례대로 그립니다.
+	 */
+	@Override
+	public void draw(Graphics g) {
+		// TODO Container.draw(Graphics g) 개선. 그림그림이 끝나고 나서
+		// g.translate(x,y)를 각 개체마다로 적용할 것.
+		try {
+			g.translate(getLocation().x, getLocation().y);
+		} catch (NullPointerException e) {
+
+		}
+		for (Child child : childs) {
+			child.draw(g);
+		}
+		try {
+			g.translate(-getLocation().x, -getLocation().y);
+		} catch (NullPointerException e) {
+		}
+	}
+	
+	/**
+	 * 마우스 이벤트를 받습니다. 자신뿐만 아니라 포함하고 있는 Child에게도 마우스 이벤트를
+	 * 전달합니다.
+	 */
+	@Override
+	public Child processMouseEvent(MouseEvent e, MouseType mouseType) {
+		Child result = super.processMouseEvent(e, mouseType);
+		for (Child theDrawn : childs) {
+			if (theDrawn instanceof Child) {
+				Child c = theDrawn.processMouseEvent(e, mouseType);
+				if (/*result ==this && */c != null)
+					result = c;
+			} else
+				break;
+		}
+		return result;
+	}
+	
+	/**
+	 * Child를 제외시킵니다. 제외된 Child의 root는 null이 됩니다.
+	 * @param child
+	 *        제외시킬 Child입니다.
+	 */
+	public void remove(Child child) {
+		childs.remove(child);
+		child.root = null;
+	}
+
+	public void setDepth(Child child, int index) {
+		childs.remove(child);
+		childs.add(index, child);
+	}
+	
+	/**
+	 * 현재 가지고 있는 child들의 갯수를 반환합니다.
+	 * @return 가지고 있는 Child들의 갯수입니다.
+	 */
+	public int size() {
+		return childs.size();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public LinkedList<Child> getChilds() {
+		return (LinkedList<Child>) childs.clone();
+	}
+}

@@ -1,0 +1,56 @@
+package com.gmail.sungmin0511a.gameConstituent;
+
+import java.util.ArrayList;
+
+import com.gmail.sungmin0511a.drawAbles.Child;
+
+class ArrayWithKey {
+	private StatusArrayKey e;
+	private ArrayList<Status> status;
+
+	public <K extends Enum<K> & StatusArrayKey> ArrayWithKey(K e) {
+		super();
+		this.status = new ArrayList<Status>();
+		this.e = e;
+	}
+
+	public <K extends Enum<K> & StatusArrayKey> ArrayList<Status> getStatus(K e) {
+		if (e.equals(this.e))
+			return status;
+		else
+			return null;
+	}
+
+	public <K extends Enum<K> & StatusArrayKey> void setE(K e) {
+		this.e = e;
+	}
+
+}
+
+public class Unit {
+	Child body;
+	ArrayList<ArrayWithKey> status;
+	ArrayList<UnitListener> unitListeners;
+
+	void addListener(UnitListener unitListener) {
+		unitListeners.add(unitListener);
+	}
+
+	public <K extends Enum<K> & StatusArrayKey> Status getStatus(K Key, String name) {
+		for (Status result : getStatusArray(Key))
+			if (name.equals(result.getName()))
+				return result;
+		return null;
+	}
+	public <K extends Enum<K> & StatusArrayKey> ArrayList<Status> getStatusArray(K Key) {
+		ArrayList<Status> result;
+		for (ArrayWithKey array : status) {
+			result = array.getStatus(Key);
+			if (result != null)
+				return result;
+		}
+		ArrayWithKey newArray = new ArrayWithKey(Key);
+		status.add(newArray);
+		return newArray.getStatus(Key);
+	}
+}

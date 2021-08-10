@@ -1,0 +1,28 @@
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.AlphaComposite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+public abstract class AlphaChild extends Child {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6266616709848525927L;
+	float alpha;
+
+	public AlphaChild(Point location) {
+		super(location);
+		alpha=1;
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		Graphics2D g2=(Graphics2D)g;
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+		drawAlpha(g2);
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));
+	}
+	public abstract void drawAlpha(Graphics2D g);
+}

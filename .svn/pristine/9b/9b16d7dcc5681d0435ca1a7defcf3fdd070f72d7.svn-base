@@ -1,0 +1,105 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.layoutWitch;
+
+import com.gmail.sungmin0511a.drawAbles.Child;
+
+/** @author ½Å¼º¹Î */
+public class BirdEyeWitch extends LayoutWitch {
+	/** @author ½Å¼º¹Î */
+	public class BirdEyeGhost extends Ghost {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 6204515454462075347L;
+
+		/** @param child */
+		public BirdEyeGhost(Child child) {
+			super(child);
+			// TODO BirdEyeGhost.Constructor()
+		}
+		
+		/* (non-Javadoc)
+		 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch.Position#post()
+		 */
+		@Override
+		protected void post() {
+			// TODO BirdEyeGhost.post()
+		}
+	}
+	
+	/** @author ½Å¼º¹Î */
+	public class BirdEyePosition extends Position {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -5986177422829990190L;
+
+		/** @param child */
+		public BirdEyePosition(Child child) {
+			super(child);
+			// TODO BirdEyePosition.Constructor()
+		}
+		
+		/* (non-Javadoc)
+		 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch.Position#findOverlapedGhost()
+		 */
+		@Override
+		protected void findOverlapedGhost() {
+			// TODO BirdEyePosition.findOverlapedGhost()
+		}
+		
+		/* (non-Javadoc)
+		 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch.Position#post()
+		 */
+		@Override
+		protected void post() {
+			// TODO BirdEyePosition.post()
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5677363341624393667L;
+
+	/**
+	 * 
+	 */
+	public BirdEyeWitch() {
+		// TODO BirdEyeWitch Constructor
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#addChild(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public void addChild(Child child) {
+		// TODO BirdEyeWitch.addChild
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#addGhost(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public void addGhost(Child child) {
+		// TODO BirdEyeWitch.addGhost
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#removeChild(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public void removeChild(Child child) {
+		// TODO BirdEyeWitch.removeChild
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#removeGhost(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public void removeGhost(Child child) {
+		// TODO BirdEyeWitch.removeGhost
+	}
+}

@@ -1,0 +1,24 @@
+package com.gmail.sungmin0511a.layoutWitch;
+
+import com.gmail.sungmin0511a.drawAbles.Child;
+
+public abstract class LayoutGhost extends LayoutPosition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7941030188690823583L;
+	protected boolean overlap;
+	
+	public LayoutGhost(Child child) {
+		super(child);
+	}
+	
+	
+	public boolean isOverlap() {
+		return overlap;
+	}
+	
+	public void setOverlap(boolean overlap) {
+		this.overlap = overlap;
+	}
+}

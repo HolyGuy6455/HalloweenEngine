@@ -1,0 +1,49 @@
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+public class RectangleShapedChild extends Child {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 278006323999788971L;
+	protected Dimension bounds;
+
+	public RectangleShapedChild(Dimension bounds) {
+		super();
+		this.bounds = bounds;
+	}
+
+	@Override
+	public boolean contains(Child child) {
+		if (child.contains(new Point(0, 0)) || child.contains(new Point(bounds.width, 0))
+			|| child.contains(new Point(bounds.width, bounds.height))
+			|| child.contains(new Point(0, bounds.height))) {
+			return true;
+		} else
+			return false;
+	}
+
+	@Override
+	public boolean contains(Point point) {
+		if ((point.x > 0 && point.x <= bounds.width) && (point.y > 0 && point.y <= bounds.height)) {
+			return true;
+		} else
+			return false;
+	}
+
+	@Override
+	public void draw(Graphics2D g) {
+		g.fillRect(0, 0, bounds.width, bounds.height);
+	}
+
+	public Dimension getBounds() {
+		return bounds;
+	}
+
+	public void setBounds(Dimension bounds) {
+		this.bounds = bounds;
+	}
+}

@@ -1,0 +1,12 @@
+package com.gmail.sungmin0511a.etc;
+
+public enum MouseType {
+	Clicked,
+	Dragged,
+	Entered,
+	Exited,
+	Moved,
+	Pressed,
+	Released,
+	WheelMoved
+}

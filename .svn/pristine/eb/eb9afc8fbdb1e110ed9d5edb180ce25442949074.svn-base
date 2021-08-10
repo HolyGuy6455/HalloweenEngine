@@ -1,0 +1,38 @@
+package com.gmail.sungmin0511a.layoutWitch;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import com.gmail.sungmin0511a.drawAbles.Child;
+import com.gmail.sungmin0511a.gameEvent.OverlapListener;
+
+public abstract class LayoutPosition implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3730769389301543863L;
+	protected ArrayList<OverlapListener> overlapListeners;
+	private Child posedChild;
+	
+	public LayoutPosition(Child child) {
+		posedChild = child;
+		child.setPosition(this);
+		overlapListeners = new ArrayList<OverlapListener>();
+	}
+	
+	public void addOverlapListener(OverlapListener overlapListener) {
+		overlapListeners.add(overlapListener);
+	}
+	
+	protected abstract void findOverlapedGhost();
+	
+	public Child getChild() {
+		return posedChild;
+	}
+	
+	protected abstract void post();
+	
+	public void setChild(Child posedChild) {
+		this.posedChild = posedChild;
+	}
+}

@@ -1,0 +1,43 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.costume;
+
+import java.awt.AlphaComposite;
+import java.awt.Composite;
+import java.awt.Graphics2D;
+
+/**
+ * @author ½Å¼º¹Î
+ */
+public class Opacity implements Costume {
+	Composite beforeComposite;
+	double transparency;
+
+	/**
+	 * 
+	 */
+	public Opacity() {
+		this(1.0);
+	}
+	
+	/**
+	 * @param transparency
+	 */
+	public Opacity(double transparency) {
+		super();
+		this.transparency = transparency;
+	}
+
+	@Override
+	public void dressUp(Graphics2D graphics) {
+		graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
+				(float) transparency));
+		beforeComposite = graphics.getComposite();
+	}
+	
+	@Override
+	public void unDress(Graphics2D graphics) {
+		graphics.setComposite(beforeComposite);
+	}
+}

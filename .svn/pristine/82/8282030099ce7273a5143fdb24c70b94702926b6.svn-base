@@ -1,0 +1,15 @@
+package com.gmail.sungmin0511a.gameConstituent;
+
+import java.util.EventListener;
+
+public interface UnitListener extends EventListener {
+	void die();
+
+	void conditionExpire(Condition s);
+	
+	void conditionOccur(Condition s);
+
+	void statusCharged(Status e);
+	
+	void statusEmpty(Status e);
+}

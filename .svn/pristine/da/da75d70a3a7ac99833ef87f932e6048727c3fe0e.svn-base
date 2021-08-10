@@ -1,0 +1,19 @@
+package com.gmail.sungmin0511a.major;
+
+import java.util.ArrayList;
+
+public class Signpost {
+	static Signpost myself = new Signpost();
+	static Signpost getSignpost() {
+		return myself;
+	}
+
+	ArrayList<Object> locker;
+	private Signpost() {
+		locker = new ArrayList<>();
+	}
+
+	public ArrayList<Object> getLocker() {
+		return locker;
+	}
+}

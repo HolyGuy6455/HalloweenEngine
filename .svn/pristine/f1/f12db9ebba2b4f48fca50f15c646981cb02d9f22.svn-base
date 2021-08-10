@@ -1,0 +1,94 @@
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.Graphics2D;
+
+import com.gmail.sungmin0511a.layoutWitch.GridWitch;
+import com.gmail.sungmin0511a.layoutWitch.LayoutWitch;
+import com.gmail.sungmin0511a.major.Stage;
+
+/**
+ * @author ½Å¼º¹Î
+ */
+public class Layer extends Party {
+	private static int Numbering;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1798442447244442871L;
+	private LayoutWitch witch;
+	
+	/**
+	 * 
+	 */
+	public Layer() {
+		this("UnTitled" + Numbering);
+	}
+	
+	/**
+	 * @param name
+	 */
+	public Layer(String name) {
+		super(name);
+		witch = new GridWitch();
+	}
+
+	@Override
+	public void add(Child child) {
+		super.add(child);
+		witch.addChild(child);
+	}
+	
+	/**
+	 * @param child
+	 */
+	public void addGhost(Child child) {
+		super.add(child);
+		witch.addGhost(child);
+	}
+
+	@Override
+	public void draw(Graphics2D graphics) {
+		if (Stage.playing())
+			witch.locate();
+		for (int i = 0; i < members.size(); i++) {
+			members.get(i).draw(graphics);
+		}
+	}
+	
+	/**
+	 * @param index
+	 * @return
+	 */
+	public Child getContent(int index) {
+		return members.get(index);
+	}
+	
+	/**
+	 * @return
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public <E extends LayoutWitch> E getWitch() {
+		return (E) witch;
+	}
+
+	@Override
+	public void remove(Child child) {
+		super.remove(child);
+		witch.removeChild(child);
+		witch.removeGhost(child);
+	}
+	
+	/**
+	 * @param witch
+	 */
+	public void setWitch(LayoutWitch witch) {
+		this.witch = witch;
+	}
+}

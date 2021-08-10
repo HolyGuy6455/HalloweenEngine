@@ -1,0 +1,28 @@
+package com.gmail.sungmin0511a.gameConstituent;
+
+/** @author ½Å¼º¹Î */
+public class Condition {
+	protected String name;
+	Unit unit;
+	
+	/** @param name */
+	public Condition(String name) {
+		super();
+		this.name = name;
+	}
+	
+	/** @return the unit */
+	public Unit getUnit() {
+		return unit;
+	}
+	
+	/** */
+	protected void expire() {
+		unit.unitListener.conditionExpire(this);
+	}
+	
+	/** */
+	protected void occur() {
+		unit.unitListener.conditionOccur(this);
+	}
+}

@@ -1,0 +1,42 @@
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+public class StringChild extends Child {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4041132256728152858L;
+	String string;
+	
+	public StringChild(String string) {
+		super();
+		this.string = string;
+	}
+	
+	@Override
+	public boolean contains(Child child) {
+		// TODO StringChild.contains(Child child)
+		return false;
+	}
+	
+	@Override
+	public boolean contains(Point point) {
+		// TODO StringChild.contains(Point point)
+		return false;
+	}
+	
+	@Override
+	public void draw(Graphics2D g) {
+		g.drawString(string, 0, 0);
+	}
+	
+	public String getString() {
+		return string;
+	}
+	
+	public void setString(String string) {
+		this.string = string;
+	}
+}

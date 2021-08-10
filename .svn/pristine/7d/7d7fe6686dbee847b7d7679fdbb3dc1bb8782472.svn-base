@@ -1,0 +1,56 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.costume;
+
+import java.awt.Graphics2D;
+
+/**
+ * @author ½Å¼º¹Î
+ */
+public class Location implements Costume {
+	private int x;
+	private int y;
+	
+	public Location() {
+		this(0, 0);
+	}
+
+	/**
+	 * 
+	 */
+	public Location(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	@Override
+	public void dressUp(Graphics2D graphics) {
+		graphics.translate(x, y);
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	public void translate(int x, int y) {
+		this.x += x;
+		this.y += y;
+	}
+	@Override
+	public void unDress(Graphics2D graphics) {
+		graphics.translate(-x, -y);
+	}
+}

@@ -1,0 +1,122 @@
+package com.gmail.sungmin0511a.gameConstituent;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Hashtable;
+
+import javax.swing.Timer;
+
+import com.gmail.sungmin0511a.costume.Opacity;
+import com.gmail.sungmin0511a.drawAbles.Child;
+
+/** @author ½Å¼º¹Î */
+public class Unit {
+	Child body;
+	Hashtable<String, Condition> conditionsMap;
+	Hashtable<String, Status> statusMap;
+	UnitListener unitListener;
+	
+	public Unit(Child body) {
+		this.body = body;
+		statusMap = new Hashtable<String, Status>();
+		conditionsMap = new Hashtable<String, Condition>();
+		unitListener = new UnitListener() {
+			@Override
+			public void conditionExpire(Condition s) {
+			}
+			
+			@Override
+			public void conditionOccur(Condition s) {
+			}
+			
+			@Override
+			public void die() {
+			}
+			
+			@Override
+			public void statusCharged(Status e) {
+			}
+			
+			@Override
+			public void statusEmpty(Status e) {
+			}
+		};
+	}
+	
+	public void addCondition(Condition condition) {
+		this.conditionsMap.put(condition.name, condition);
+		condition.unit = this;
+		condition.occur();
+	}
+
+	/** @param status */
+	public void addStatus(Status status) {
+		this.statusMap.put(status.getName(), status);
+		status.unit = this;
+	}
+	
+	/** 
+	 */
+	public void die() {
+		class DieEffect {
+			Opacity opacity;
+			Timer timer;
+			
+			public DieEffect() {
+				opacity = new Opacity(1.0);
+				body.addCostume(opacity);
+				timer = new Timer(10, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						opacity.setTransparency(opacity.getTransparency() - 0.05);
+						if (opacity.getTransparency() <= 0) {
+							timer.stop();
+							unitListener.die();
+						}
+					}
+				});
+				timer.start();
+			}
+		}
+		new DieEffect();
+	}
+	
+	/** @return the body */
+	public Child getBody() {
+		return body;
+	}
+	
+	/** @param name
+	 * @return */
+	public Condition getCondition(String name) {
+		return conditionsMap.get(name);
+	}
+	
+	/** @param name
+	 * @return */
+	public Status getStatus(String name) {
+		return statusMap.get(name);
+	}
+	
+	/** @return the unitListener */
+	public UnitListener getUnitListener() {
+		return unitListener;
+	}
+	
+	public boolean hasCondition(String name) {
+		return conditionsMap.containsKey(name);
+	}
+
+	public void removeCondition(String name) {
+		if (hasCondition(name)) {
+			getCondition(name).expire();
+			conditionsMap.remove(name);
+		}
+	}
+
+	/** @param unitListener
+	 *        the unitListener to set */
+	public void setUnitListener(UnitListener unitListener) {
+		this.unitListener = unitListener;
+	}
+}

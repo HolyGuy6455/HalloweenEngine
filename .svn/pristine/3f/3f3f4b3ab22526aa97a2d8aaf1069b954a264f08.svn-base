@@ -1,0 +1,59 @@
+package com.gmail.sungmin0511a.gameConstituent;
+
+/** @author ½Å¼º¹Î */
+public class Status {
+	Unit unit;
+	private int level;
+	private int limit;
+	private String name;
+	
+	/** @param level
+	 * @param limit
+	 * @param name
+	 * @param unit */
+	public Status(String name, int level, int limit) {
+		super();
+		this.level = level;
+		this.limit = limit;
+		this.name = name;
+	}
+
+	public void add(int value) {
+		int result = level + value;
+		if (result >= limit) {
+			level = limit;
+			unit.unitListener.statusCharged(this);
+		} else if (result <= 0) {
+			level = 0;
+			unit.unitListener.statusEmpty(this);
+		} else
+			level = result;
+	}
+	
+	/** @return the limit */
+	public int getLimit() {
+		return limit;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void set(int value) {
+		if (value > limit) {
+			level = limit;
+			unit.unitListener.statusCharged(this);
+		} else if (value <= 0) {
+			level = 0;
+			unit.unitListener.statusEmpty(this);
+		} else {
+			level = value;
+		}
+	}
+	
+	/** @param limit
+	 *        the limit to set */
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+}

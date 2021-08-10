@@ -1,0 +1,99 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.costume;
+
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
+
+/** @author ½Å¼º¹Î */
+public class Scale extends PointCostume {
+	private double height;
+	private double width;
+	
+	/**  */
+	public Scale() {
+		this(1.0, 1.0);
+	}
+
+	public Scale(double magnify) {
+		this(magnify, magnify);
+	}
+	
+	public Scale(double magnifyWidth, double magnifyHeight) {
+		super(AffineTransform.getScaleInstance(magnifyWidth, magnifyHeight));
+		this.width = magnifyWidth;
+		this.height = magnifyHeight;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.costume.Costume#dressUp(java.awt.Graphics2D)
+	 */
+	@Override
+	public void dressUp(Graphics2D graphics) {
+		graphics.scale(width, height);
+		// graphics.scale((1 / magnify), (1 / magnify));
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.costume.PointCostume#dressUp(java.awt.Point)
+	 */
+	@Override
+	public void dressUp(Point2D position) {
+		position.setLocation(position.getX() * width, position.getY() * height);
+	}
+	
+	/** @return the height */
+	public double getHeight() {
+		return height;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.costume.Costume#getPriority()
+	 */
+	@Override
+	public int getPriority() {
+		return NORM_PRIORITY;
+	}
+	
+	/** @return the width */
+	public double getWidth() {
+		return width;
+	}
+	
+	/** @param height
+	 *        the height to set */
+	public void setHeight(double height) {
+		this.height = height;
+	}
+	
+	/** @param scale */
+	public void setScale(double scale) {
+		setWidth(scale);
+		setHeight(scale);
+	}
+
+	/** @param width
+	 *        the width to set */
+	public void setWidth(double width) {
+		this.width = width;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.costume.Costume#unDress(java.awt.Graphics2D)
+	 */
+	@Override
+	public void unDress(Graphics2D graphics) {
+		graphics.scale((1.0 / width), (1.0 / height));
+		// graphics.scale(magnify, magnify);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.costume.PointCostume#unDress(java.awt.Point)
+	 */
+	@Override
+	public void unDress(Point2D position) {
+		position.setLocation(position.getX() / width, position.getY() / height);
+	}
+}

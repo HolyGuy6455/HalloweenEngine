@@ -1,0 +1,6 @@
+package com.gmail.sungmin0511a.major;
+
+public interface ImageLoadListener {
+	public void loading(double loaded);
+	public void complete();
+}

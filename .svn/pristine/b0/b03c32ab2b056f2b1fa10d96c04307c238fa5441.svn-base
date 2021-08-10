@@ -1,0 +1,87 @@
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Point;
+
+import com.gmail.sungmin0511a.major.ImageStorage;
+
+public class ImagedChild extends RectangleShapedChild {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7120430604946824600L;
+	protected transient Image image;
+	boolean reverse;
+	protected String skin;
+	
+	/**
+	 * @param location
+	 * @param skin
+	 */
+	public ImagedChild(String skin) {
+		super(null);
+		this.skin = skin;
+		ImageStorage observer = ImageStorage.getImageStorage();
+		image = observer.image(skin);
+		reverse = false;
+	}
+	
+	/**
+	 * @param skin
+	 */
+	public void changeImage(String skin) {
+		image = null;
+		this.skin = skin;
+		image = ImageStorage.getImageStorage().image(skin);
+	}
+
+	@Override
+	public boolean contains(Child child) {
+		if (bounds == null)
+			return false;
+		return super.contains(child);
+	}
+
+	@Override
+	public boolean contains(Point point) {
+		if (bounds == null)
+			return false;
+		return super.contains(point);
+	}
+
+	@Override
+	public void draw(Graphics2D g) {
+		ImageStorage observer = ImageStorage.getImageStorage();
+		if (image == null) {
+			image = observer.image(skin);
+		}
+		if (bounds == null && observer.isImageLoaded(skin))
+			bounds = new Dimension(image.getHeight(observer), image.getHeight(observer));
+		if (reverse)
+			g.drawImage(image, bounds.width, 0, 0, bounds.height, 0, 0, image.getWidth(observer),
+					image.getHeight(observer), observer);
+		else
+			g.drawImage(image, 0, 0, bounds.width, bounds.height, observer);
+	}
+	
+	@Override
+	public void setBounds(Dimension bounds) {
+		super.setBounds(bounds);
+	}
+	
+	/**
+	 * @param reverse
+	 */
+	public void setReverse(boolean reverse) {
+		this.reverse = reverse;
+	}
+	
+	/**
+	 * @return
+	 */
+	public boolean isReverse() {
+		return reverse;
+	}
+}

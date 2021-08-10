@@ -1,0 +1,7 @@
+package com.gmail.sungmin0511a.etc;
+
+import java.io.Serializable;
+
+public interface Saveable extends Serializable {
+	public void loaded();
+}

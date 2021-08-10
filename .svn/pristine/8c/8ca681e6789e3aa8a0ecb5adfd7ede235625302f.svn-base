@@ -1,0 +1,256 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.major;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+
+import javax.swing.JFrame;
+import javax.swing.Timer;
+
+import com.gmail.sungmin0511a.drawAbles.Party;
+import com.gmail.sungmin0511a.drawAbles.Stage;
+
+/** @author 신성민 */
+public class Halloween {
+	static boolean play;
+	
+	/** @return */
+	public static boolean playing() {
+		return play;
+	}
+	
+	BufferStrategy bufferStrategy;
+	Canvas canvas;
+	Party cursorIcon;
+	JFrame frm;
+	private BufferedImage inGame;		// 출력되는 화면
+	Point mousePosition;
+	// JPanel panel;
+	int presentLayer;
+	private Dimension size;
+	private Stage stages[];					// DrawAble들이 담기는곳
+	Timer timer;
+	Double zoom;							// 카메라 줌
+	
+	/**
+	 * 
+	 */
+	public Halloween() {							// 생성자
+		super();
+		presentLayer = 0;
+		size = new Dimension(640, 480);
+		frm = new JFrame();
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frm.setResizable(false);
+		frm.setSize(size);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		frm.setLocation((dimension.width - size.width) / 2, (dimension.height - size.height) / 2);
+		// frm.setBounds(0, 0, 640, 480);
+		// frm.add(panel);
+		frm.setVisible(true);
+		canvas = new Canvas();
+		frm.add(canvas);
+		canvas.setSize(size);
+		canvas.setBackground(Color.black);
+		canvas.createBufferStrategy(2);
+		bufferStrategy = canvas.getBufferStrategy();
+		/*panel = new JPanel() {
+		private static final long serialVersionUID = 526433531533304543L;
+
+		@Override
+		public void paintComponent(Graphics graphics) {
+		// 그래픽에 출력
+		super.paintComponent(graphics);
+		setOpaque(true);
+
+		}
+		};*/
+		stages = new Stage[1];
+		stages[0] = new Stage("Stage");
+		inGame = new BufferedImage(640, 460, BufferedImage.TYPE_INT_ARGB);
+		zoom = 1.0;
+		play = true;
+		cursorIcon = new Party("CursorIcon");
+		mousePosition = new Point();
+		ImageStorage.getImageStorage();
+		frm.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_CLICKED);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_ENTERED);
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_EXITED);
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_PRESSED);
+			}
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_RELEASED);
+			}
+		});
+		canvas.addMouseMotionListener(new MouseMotionListener() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				try {
+					mousePosition.x = canvas.getMousePosition().x;
+					mousePosition.y = canvas.getMousePosition().y;
+					e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				} catch (NullPointerException ne) {
+				}
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_DRAGGED);
+				// cursorIcon.setLocation(result);
+			}
+			
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				try {
+					mousePosition.x = canvas.getMousePosition().x;
+					mousePosition.y = canvas.getMousePosition().y;
+					e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				} catch (NullPointerException ne) {
+				}
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_MOVED);
+				// cursorIcon.setLocation(result);
+			}
+		});
+		;
+		// canvas.setOpaque(true);
+		timer = new Timer(10, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// panel.repaint();
+				;
+				Graphics2D graphics = (Graphics2D) bufferStrategy.getDrawGraphics();
+				graphics.setClip(0, 0, size.width, size.height);
+				// 출력되는 그림의 크기를 한정한다
+				Graphics2D g = (Graphics2D) inGame.getGraphics();
+				g.setColor(new Color(250, 250, 250));
+				g.fillRect(0, 0, inGame.getWidth(), inGame.getHeight());
+				stages[presentLayer].draw(g);
+				cursorIcon.draw(g);
+				// 가상의 화면에 있는 그림을 실제 그래픽에 그린다
+				graphics.drawImage(inGame, 0, 0, size.width, size.height, 0, 0,
+						(int) (size.width / zoom), (int) (size.height / zoom), canvas);
+				;
+				if (!bufferStrategy.contentsLost()) {
+					bufferStrategy.show();
+				}
+			}
+		});
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				timer.start();
+			}
+		}).run();
+	}
+	
+	/** @param l */
+	public synchronized void addMouseListener(MouseListener l) {
+		canvas.addMouseListener(l);
+	}
+	
+	/** @param l */
+	public synchronized void addMouseMotionListener(MouseMotionListener l) {
+		canvas.addMouseMotionListener(l);
+	}
+	
+	/** @return */
+	public Party getCursorIcon() {
+		return cursorIcon;
+	}
+	
+	/** @return */
+	public JFrame getFrame() {
+		return frm;
+	}
+	
+	/** @return */
+	public BufferedImage getInGame() {
+		return inGame;
+	}
+	
+	public Point getMousePosition() {
+		return new Point(mousePosition.x, mousePosition.y);
+	}
+
+	/** @return */
+	public int getPresentLayer() {
+		return presentLayer;
+	}
+	
+	/** @return */
+	public Stage getStage() {
+		return stages[presentLayer];
+	}
+	
+	/** @return */
+	public Timer getTimer() {
+		return timer;
+	}
+	
+	/**
+	 * 
+	 */
+	public void playTheWorld() {
+		play = true;
+	}
+	
+	/** @param inGame */
+	public void setInGame(BufferedImage inGame) {
+		this.inGame = inGame;
+	}
+	
+	/** @param presentLayer */
+	public void setPresentLayer(int presentLayer) {
+		if (stages.length < presentLayer + 1) {
+			Stage result[] = new Stage[presentLayer + 1];
+			int i;
+			for (i = 0; i < stages.length; i++) {
+				result[i] = stages[i];
+			}
+			stages = result;
+		}
+		this.presentLayer = presentLayer;
+	}
+	
+	/** @param Size */
+	public void setSize(Dimension Size) {			// 크기조정
+		this.size = Size;
+		// panel.setSize(Size);
+		canvas.setSize(Size);
+		frm.setBounds(0, 0, Size.width, Size.height);
+	}
+	
+	/** @param root */
+	public void setStage(Stage root) {
+		this.stages[presentLayer] = root;
+	}
+
+	/**
+	 * 
+	 */
+	public void stopTheWorld() {
+		play = false;
+	}
+}

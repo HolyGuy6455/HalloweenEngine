@@ -1,0 +1,178 @@
+20140411 ÇöÀç½Ã°¢ 11:57. ÀÚ¹Ù °­ÀÇµè´ÂÁß. »õ·Ó°Ô ¾²´Â °³¹ßÀÏÁö.
+ÀÏ´Ü ±âºÐ»ï¾Æ ¹öÀüÀ» 0.1¸¸Å­ ¿Ã¸±±î? ±æ°í ±ä ÀÏÀÌ ³¡³ª°í ¿À·£¸¸¿¡ Ã£¾Æ¿Â ÆòÈ­¿¡ Á¥¾î Áö±Ý ±âºÐÀº ³¯¾Æ°¥ °Í °°´Ù. 
+¾à°£ÀÇ ½ÃÇàÂø¿À¸¦ °ÅÃÆ´Ù. ÇÁ·ÎÁ§Æ®ÀÇ ÀÌ¸§À» ¹Ù²ã ¹öÀüÀ» Ç¥½ÃÇÏ´Â°É Æ÷±âÇß´Ù. ÇÁ·ÎÁ§Æ®°¡ SVN¿¡ ¾ôÇôÀÖ¾î¼­ ±×·±°ÇÁö ÇÁ·ÎÁ§Æ®ÀÇ ÀÌ¸§À» ÇÔºÎ·Î ¸ø¹Ù²Û´Ù. ´ë½Å ¹öÀüº°·Î jarÆÄÀÏÀ» ±¸ºÐÇÏ´Â ¹æ¹ýÀ» ¾µ »ý°¢ÀÌ´Ù.
+´Ù ¶â¾î°íÄ¥°Å¾ß! À¸¾Æ¾Æ¾Æ! ÁÂÇ¥¸¦ ¾ø¾Ö¹ö¸®°í, ¾Æ¹«Æ°°£¿¡! À¸¿Í¾Æ¾Æ¾Æ¾Æ¾Æ!
+ÀÏ´Ü ±×µ¿¾È ÇÏ°í½Í¾ú´ø Å« ÀÏµéÀ» ÀúÁú·¯³ù´Ù. ÇöÀç Halloween¿£ÁøÀÇ ÆÐÅ°ÁöµéÀº »¡°£ X¸¦ ¶ç¿ì°í Â¡Â¡°Å¸®°í ÀÖ´Ù. ÀÌ°É ¾î´À¼¼¿ù¿¡ ´Ù ¼öÁ¤ÇÏ³ª
+¼öÁ¤ÇÑ ³»¿ëÀº ´ÙÀ½°ú °°´Ù.
+1. ChildÀÇ ÁÂÇ¥¸¦ ¾ø¾Ö¹ö·È´Ù. ¾ÕÀ¸·Î´Â CostumeÀÌ ±× ¿ªÇÒÀ» ´ë½Å ÇÒ °ÍÀÌ´Ù.
+2. Costume°´Ã¼¸¦ Á¤ÀÇÇß´Ù. ÁÂÇ¥, È¸Àü, »ö±ò µîµî ÀÌ³à¼®ÀÌ ´Ù µµ¸Ã¾Æ ÇÒ °ÍÀÌ´Ù.
+3. ContainerÀÇ ÀÌ¸§À» Party·Î ¹Ù²å´Ù. ÀÌÁ¦ ÀÚ¹Ù¿¡¼­ ±âº»À¸·Î Á¦°øÇÏ´Â Container¿Í È¥µ¿ÇÒ ¿©Áö°¡ ¾ø´Ù. ¶ÇÇÑ, ChildÀÇ ÇÊµå root´Â belongÀ¸·Î º¯°æµÇ¾ú´Ù.
+4. Stage´Â ÀÌÁ¦ ´õ ÀÌ»ó JPanelÀ» »ó¼ÓÇÏÁö ¾Ê´Â´Ù. ±× ÀÚÃ¼·Î µ¶¸³ÀûÀÎ Å¬·¡½º´Ù.
+ÀÌ Á¤µµ. ±×¾ß¸»·Î ´ë°Ýº¯. ¾Æ. °©ÀÚ±â ÇÏ±â ½È¾îÁö³×
+¾îµðºÎÅÍ ¼ÕÀ» ´ë¾ßÇÒÁö Àß ¸ð¸£°ÚÀ¸´Ï, °¡Àå Áß¿äÇÑ ChildºÎÅÍ Á¤¸®ÇÏ´Â°É·Î ½ÃÀÛÇÏ·ÁÇÑ´Ù.
+5. MouseType ÀÎÅÍÆäÀÌ½º¸¦ »èÁ¦. MouseEvent³»¿¡ Á¤ÀÇµÈ int¸¦ ¾µ °ÍÀÌ´Ù. 
+ÀÏ´Ü Child°¡ Á¤¸®µÇ¾ú´Ù. ±× °úÁ¤¿¡¼­ CostumeÀÌ interface·Î ÀüÈ¯µÇ¾ú´Ù
+¿©¼¼¸¦ ¸ô¾ÆºÙ¿© ÄÚ½ºÆ¬À» ¸î°³ ¸¸µé¾ú´Ù. Location, Rotation, Painting.
+PartyÀÇ »¡°£ÁÙÀ» ¸ðµÎ ¾ø¾Ý´Ù. ±× °úÁ¤ ¼Ó¿¡ ÀÌ°ÍÀú°Í Á¤¸®Çß´Ù. ÇÊµå childs¸¦ members·Î ÀÌ¸§À» ¹Ù²å°í, removeAll()À» Ãß°¡Çß´Ù. 
+»¡°£ÁÙÀ» °ÅÀÇ ´Ù Á¦°ÅÇß´Ù. ´ëºÎºÐ location°ü·Ã. ¸î¸îºÎºÐ¿¡¼­ Å« ºÒÆíÇÔÀÌ »ý±æ°ÍÀÌ ¿¹»óµÈ´Ù.
+Stage°¡ JPanelÀÌ¿©¾ß¸¸ Çß´ø ÀÌÀ¯¸¦ ¹ß°ßÇß´Ù. ¹Ù·Î paintComponent(Graphics)ÀÇ Á¸Àç¶§¹®. ÀÏ´Ü JPanel¿ªÇÒÀ» ÇÏ´Â ¹«¸íÅ¬·¡½º°¡ ¿À¹ö¶óÀÌµå·Î ¾î¶»°Ô °Ü¿ì ±¸ÇöÇßÁö¸¸, ¾à°£ ¾î¼³ÆÛº¸ÀÌ´Â°Ô ¹®Á¦±ä ÇÏ´Ù.
+layoutWitchµé¸¸ ´Þ·¡ÁÖ¸é »¡°£ÁÙÁ¤¸®°¡ ³¡³ª´Âµ¥.....Èå¾Ï ±ÍÂú¾Æ. ²Ï³ª º¹ÀâÇÑ ÀÛ¾÷ÀÌ µÇ¸®¶ó ¿¹»óÇÑ´Ù. ÀÏ´Ü PositionÀÌ¶ó´Â ³ðÀÌ location¿¡ ¸¹ÀÌ ÀÇÁöÇÏ´ø ³ðÀÌ¾úÀ¸´Ï....
+¶ÇÇÑ, GlobalLocation°°Àº ±â´ÉÀ» ±¸ÇöÇÒ ¹æ¹ý¿¡ ´ëÇØ ¶Ç »ý°¢ÇØºÁ¾ß ÇÑ´Ù. À¸À¸ ±ÍÂú¾Æ
+ÇöÀç½Ã°¢ 20:38. Áý¿¡¿Ô´Ù. svn°ú ¿ÏÀüµ¿±âÈ­¸¦ Çß´Ù. ÀÌ°Å ³¯¾Æ°¡¸é ²Þµµ Èñ¸Áµµ ¾ø°Ú±º ±×·¡
+
+20140412 ÇöÀç½Ã°¢ 18:45. API¸¸µå´Â°Ô ÀÌ·¸°Ô Àç¹ÌÀÖÀ» ÁÙÀÌ¾ß. È÷ÆR¤¾È÷È÷È÷
+ÄÚµå¿¡¼­ ¾à°£ÀÇ º¯°æÁ¡ÀÌ ÀÖ´Ù¸é, OpacityÀÇ Åõ¸íµµ°¡ ±âÁ¸ÀÇ Åõ¸íµµ¿Í ÁßÃ¸µÉ°ÍÀÎÁö, µ¶¸³µÉ°ÍÀÎÁö °áÁ¤ÇÒ ¼ö ÀÖ´Ù´Â°Í. ÀÌ°Ç ¹ÌÃ³ »ý°¢ ¸øÇß¾ú´Âµ¥, »ý°¢ÇØº¸´Ï ¼ÓÇØÀÖ´Â Party°¡ Åõ¸íÇÑµ¥ ±× ¾ÈÀÇ ChildÇÏ³ª°¡ Åå Æ¢¸é ÀÌ»óÇÏÀÝ¾Æ? ¾Æ ³ª Á¤¸» ÁøÂ¥ Ä£ÀýÇÑ °³¹ßÀÚÀÎµí ÀÌ·±°Íµµ ¼¼½ÉÇÏ°Ô ½Å°æ¾²´Ù´Ï ÈÄÈÄÈÊ
+.....Á¤ÀÛ º»°ÝÀûÀ¸·Î ¼ÕÀ» ´ë¾ßÇÏ´Â layoutWitchºÎºÐÀº ¼ÕÀ» ¾È´ë°í ÀÖ´Ù. ÀÌ·¡µµ µÇ´Â°É±î
+±Ùµ¥ È®½ÇÈ÷ ±âºÐÀÌ ¹¦ÇÑ°Ô, ÀÌ ¿£Áø¸¸µå´Â ÀÛ¾÷Àº Áú¸®Áö ¾Ê´Â´Ù. °ÔÀÓ°°Àº°Ç ÇÏ´Ùº¸¸é Áú¸®°Ô ¸¶·ÃÀÎµ¥, ÀÌ°Ç ÇØµµÇØµµ ¹º°¡ »õ·Î¿î°Ô ÀÚ²Ù »ý°Ü³ª´Ï ÁøÂ¥ Áø½É Àç¹ÌÀÖ´Ù. ¸¶ÀÎÅ©·¡ÇÁÆ®Ã³·³, ³»°¡ ÇÒÀÏÀ» ³»°¡ Á÷Á¢ ¸¸µå´Â ´À³¦ÀÌ¶ö±î. ³ªÁß¿¡ °ÔÀÓÁ¦ÀÛÂÊÀ¸·Î °¡´Â°Íº¸´Ù, ÀÌ·± ¿£ÁøÀÌ³ª OSÂÊÀ¸·Î ÀÏÀ» ÇÏ°Ô µÉ °Í °°´Ù.
+
+20140415 ÇöÀç½Ã°¢ 01:24. ±×·¸´Ù. »õº®ÀÌ´Ù. ³·¿¡ ÀáÀ» ¿ö³« ¸¹ÀÌ ÀÚ³ö¼­ ¹öÆ¿ ¼ö ÀÖ´Ù.
+°³¹ßÀÏÁö¸¦ ¾È½è´Âµ¥, ±×µ¿¾È °³¹ßÀ» °ÔÀ»¸®ÇÑ Å¿µµ ÀÖÁö¸¸, APIÁ¦ÀÛ¿¡ ÈûÀ» ½ñ´À¶ó µüÈ÷ ¾µ°Ô ¾ø¾î¼­ ÀÎ °Íµµ ÀÖ´Ù. Æ®À§ÅÍ, ¿£ÇÏÀ§Å°, ¾Æ¹«Æ° ½Å³ª°Ô ³î¾ÒÀ¸´Ï ÀÌÁ¦ ½½½½ ´Ù½Ã ÇÒÀÏ ÇØ¾ßÇÏÁö ¾Ê³ª ½Í´Ù.
+ÀÏ´Ü ¹º°¡ ÀÏÀ» ¹úÀÌ±â·Î ¸¶À½¸Ô¾úÀ¸´Ï, ¹Ù·Î À§ÀÇ ÀÏÁö¿¡µµ ½á³õÀº°ÍÀ» ÇØº¼±î ÇÑ´Ù. LayoutWitchÀÇ Á¤¸®. ÀÏ´Ü GravityWitch´Â ¾îÂ÷ÇÇ FallingWitch¶û PhysicalWitch·Î ºÐ¸®ÇÒ »ý°¢ÀÌ´Ï °Á ³»¹ö·ÁµÎ°í....
+±×¸®°í »õ·Î¿î WitchµéÀ» ¸î°³ Ãß°¡ÇØº¼±î ÇÑ´Ù
+ÇöÀç½Ã°¢ 10:49. ¾îÁ¬¹ãÀº ÀÌ°É ¾²°í °Á Àä´Ù;;
+¾ÆÂü, È¤½Ã¸ð¸£´Ï±î ¿©±â Àû¾îµÖ¾ß°Ú´Ù. ¿À´Ã ¾ÆÄ§¿¡ Tempo¶ó´Â Å¬·¡½º ³»Áö ÆÐÅ°Áö±×·ìÀ» ÇÏ³ª ¸¸µé±î ¶ó´Â »ý°¢ÀÌ µé¾ú´Ù. °ÔÀÓÀº ½Ç½Ã°£ °ÔÀÓµµ ÀÖ°í ÅÏÁ¦·Î ÁøÇàÇÏ´Â °ÔÀÓµµ ÀÖ´Ù. ±×·¡¼­ ±×·± °ÔÀÓÀÇ ÁøÇà¼Óµµ¸¦ º¸Á¶ÇÏ´Â ¾ÖµéÀÌ ÀÖÀ¸¸é ¾î¶³±î, ÇÏ°í »ý°¢ÇÑ°Å´Ù.
+¶Ç, hComponent¿¡ ÅØ½ºÆ®»óÀÚ¸¦ ¸¸µé°í, ÅØ½ºÆ®¸¦ ÀÐ¾îµéÀÌ´Â TextLoader°°Àº°É ÇÏ³ª ¸¸µé¸é ¾î¶³±î »ý°¢ÁßÀÌ´Ù.
+PhysicsWitch¸¦ ±×³É °¥¾Æ¾þ¾ú´Ù. µüÈ÷ ¾Æ¹«°Íµµ ÄÚµùÀ» ¾ÈÇÑ »óÅÂ¶ó¼­ ¾È½É. 
+ÇöÀç½Ã°¢ 14:59. ¿À´ÃÀÇ ¸ñÇ¥´Â ´ÙÀ½°ú °°´Ù
+1. GridWitch¿¡ LocationÀ» µµÀÔÇØ¼­, LayoutWitch¿Í CostumeÀÌ ÇÔ²² Çàµ¿ÇÒ ¼ö ÀÖ´ÂÁö ½ÇÇèÇØº»´Ù. 
+2. ChildÀÇ LocationÀÇ °³³äÀ» ºÎÈ°½ÃÅ²´Ù(...) ¿Ö Áö¿ü´Ï¤»¤»¤»¤»
+3. ½Ã°£ÀÌ ³²À¸¸é BirdEyeWitch¸¦ ±¸»óÇÏ°í ¸¸µç´Ù
+4. Áý¿¡°¡¼­ ÆÄÆ¼
+°èÈ¹À» ¹Ù²å´Ù. Child¿¡ LocationÀ» ÇÊµå·Î ³Ö´Â°Ô ¾Æ´Ï¶ó, Costume¿¡ PointÀÇ ÁÂÇ¥¸¦ ¼öÁ¤ÇÏ´Â ¸Å¼­µå¸¦ Ãß°¡·Î ³Ö´Â´Ù. ´õºÒ¾î, PointCostumeÀÌ¶ó´Â ÀÎÅÍÆäÀÌ½º¸¦ »õ·Î ¸¸µé¾ú´Ù. ¹°·Ð CostumeÀ» »ó¼ÓÇÑ´Ù.
+¾ÆÂü. Áß¿äÇÑ°É ±ôºýÇß´Ù. CostumeÀ» Á¤¹æÇâÀ¸·Î ½ÇÇà½ÃÅ°°í ¿ª¼øÀ¸·Î ÇØÁ¦ÇØ¾ßÇÏ´Âµ¥. À¸¾Æ¾Æ ±ÍÂú¾Æ¾Æ¾Æ¾Æ¾Æ
+ÇöÀç½Ã°¢ 21:05. Áý¿¡¿Ô´Ù. ArrayListÀÇ ¼ø¼­¸¦ È¸±îµü µÚÁý´Â°Ô ÀÖÀ¸¸é ÁÁÀ»ÅÙµ¥, ¾îÂ° ±×·± ¸Å¼­µå´Â ¾ø´Ù. ÀÎÅÍ³Ý¿¡ °Ë»öÇÏ°í ½ÍÀºµ¥.....¾ÈµÈ´Ù. Á÷Á¢ ±¸ÇöÇÏ´Â ¼ö ¹Û¿¡ ¾ø³ª.
+µÚÁý´Â°Í ¸»°íµµ, ¾Ë¾Æ¼­ Á¤·ÄÇÏ´Â ¸Å¼­µåµµ ÀÖÀ¸¸é ÁÁÀ»ÅÙµ¥. ÀÖÀ»ÅÙµ¥? C¾ð¾î¿¡ ÀÖ´Âµ¥ ÀÚ¹Ù¿¡ ¾øÀ»±î? ±×·¯³ª ¿ª½Ã ÀÎÅÍ³ÝÀÌ ¾ø¾î °Ë»öÇØ º¼ ¼ö ¾ø´Ù. Á¨Àå. Á¨Àå. Á¨Àå. ÀçºÎÆÃÀ» ÇØº¼±î. À¸¾Æ¾Æ¾Æ¾Æ¾Æ
+¿À·£¸¸¿¡ FunctionÅ¬·¡½º¸¦ Á» °Çµå·È´Ù. Ãß°¡ÇÑ°Ç reverseList(ArrayList<E>)¿Í popArrayList(ArrayList<E>) µÎ°³. ¸®¹ö½º´Â LinkedList¹öÀüÀ¸·Îµµ ¸¸µé¾îºÁ¾ß°Ú´Ù.
+¸µÅ©µå ¸®½ºÆ®°¡ ¿©·¯°¡Áö ÀÇ¹Ì¿¡¼­ Áö¿øÇÏ´Â ¸Å¼­µå°¡ ´õ ¸¹´Ù Á¨Àå. ½Ï °¥¾Æ¹ö¸±±î
+ChildÀÇ costumesÇÊµå¸¦ LinkedList·Î ¹Ù²Ü°ÍÀÌ´Ù. ±×°Ô ÈÎ¾À ÆíÇØº¸ÀÎ´Ù
+CostumeÀÇ ¿ª¼øÇØÁ¦¸¦ ¸¸µé¾ú´Ù. ¹®Á¦´Â, ÀÌ°Ô Áö±Ý ÁøÂ¥ ¿ª¼øÀÎÁö ¾Æ´ÑÁö ÀÇ½ÉÀÌ °£´Ù´Â°Å
+ArrayListÁ¤·ÄÇÏ´Â¹æ¹ýÀ» ¾Ë¾Æ³Â´Ù. Áö±Ý ´çÀå Àû¿ëÇÏ±â´Â ¾à°£ ¹«¸®°¡ ÀÖÀ»°Å°°´Ù. Á¶±Ý ¸Ó¸®¸¦ Á¤¸®ÇÏ´Â ½Ã°£ÀÌ ÇÊ¿äÇÒµí
+Graphics2DÀÇ scale()ÀÌ¶ó´Â °ÍÀ» ÀÌ¿ëÇØ¼­ È®´ëÃà¼Òµµ ÇØºÁ¾ß°Ú´Ù. PointCostumeÀ» »ó¼ÓÇÏ´Â Scale·Î È®´ë/Ãà¼Ò¸¦ Ãß°¡ÇÏ°í, Rotateµµ PointCostume¿¡ Ãß°¡ÇØ¾ß°Ú´Ù.
+¾Æ. LocationÀ» Point·Î ÇÏ¸é ¾ÈµÉ°Í°°´Ù. ±×³ðÀÇ Á¤¼ö. À¸¾î¾î¾î
+
+2040416 ÇöÀç½Ã°¢ 07:58. LocationÀÇ ÁÂÇ¥¸¦ double·Î ¹Ù²Ü°ÍÀÌ´Ù.
+ÇöÀç½Ã°¢ 11:39. Ã¤ÇÃ ³¡³ª°í ¿Ô´Ù. ¹ö½º¸¦ Å¸°í¿À¸é¼­ Áß¿äÇÑ »ç½ÇÀ» ±ú´Þ¾Ò´Ù. CostumeÀ» ÇØÁ¦ÇÒ¶§, ¼ø¼­¸¦ °Å²Ù·Î ÇØÁ¦ÇÒ ÇÊ¿ä°¡ ¾ø¾ú´ø °ÍÀÌ´Ù. Graphics¿¡ °É¸° ¼³Á¤Àº ´ëºÎºÐ ±× ÀÌÈÄ¿¡µµ ¿µÇâÀ» ÁØ´Ù. ±×·¯´Ï ¸ÕÀú ¼³Á¤ÇÏ°Å³ª ÇØÁ¦ÇÒ ³à¼®ÀÌ Áß¿äÇÑ°ÅÁö, ¼ø¼­´Â ¾Æ¹«·¡µµ ÁÁÀº°Å´Ù. È¸ÀüÀ» ÇÑ µÚ xÁÂÇ¥¸¦ ¾à°£ ¿òÁ÷ÀÌ¸é Graphics¿¡¼­´Â È¸ÀüÇÑ Ã¤·Î xÁÂÇ¥°¡ ¿òÁ÷ÀÎ´Ù. ±×·¯³ª Áö±Ý ³ª´Â È¸ÀüÇÑ µÚ ±×³É Àý´ëÀûÀ¸·Î xÁÂÇ¥°¡ ¿òÁ÷ÀÌ´Â °É·Î ¸¸µç°ÍÀÌ´Ù.
+Àü¸éÀûÀÎ ¼öÁ¤¿¡ µé¾î°£´Ù. ChildÀÇ costumesÇÊµå¸¦ ´Ù½Ã ArrayList·Î ¹Ù²Û´Ù. ´Ù Áý¾îÄ¡¿î´Ù! À¸¾Æ¾Æ¾Æ!!
+±×¸®°í °í¹ÎÁßÀÎ°Í. Point¸¦ ÀüºÎ Point2D.Double·Î ¹Ù²ã³ù´Âµ¥, ¿ª½Ã ¹º°¡ ¾Æ´Ï´Ù. ±Ùµ¥, ¼ÖÁ÷È÷ Á¤¼ö¸¦ °íÁýÇÒ ÀÌÀ¯°¡ ¾ø¾î¼­.....ÀÏÀÌ ´õ Ä¿Áö±â Àü¿¡ Áö±ÝÀÌ¶óµµ ¿ø·¡´ë·Î Point·Î ÇØ¾ßÇÏ³ª? ¾Æ´Ô ÀÌ´ë·Î ±×³É ³ÀµÑ±î? °í¹ÎµÇ³×....
+CostumeµéÀÌ Á¤»óÀÛµ¿ÇÏ´Â°Å°°´Ù. »ÑµíÇÏ´Ù.
+Child¿¡ PositionÀúÀåÇØµÎ´Â ÇÊµå¸¦ ÇÏ³ª Ãß°¡ÇØ¾ß°Ú´Ù.
+¹º°¡....ÇÏ·Á°í Çß´Âµ¥....±â¾ïÀÌ...¾Æ. ±â¾ï³µ´Ù. Root¶ó´Â ÀÌ¸§À» ¾î¶»°Ôµç Á» ÇØ¾ßÁö. ¾î...±Ùµ¥ ¹»·ÎÇÏÁö?
+¾Æ ±×·¯°íº¸´Ï ChildÀÇ rootÇÊµå´Â belongÀ¸·Î ¹Ù²å±¸³ª. À½. ±×·³ °Á ³ÀµÑ±î. ±Ùµ¥ Á» ÀÌ»óÇÏÀÝ¾Æ. À¸À½. À¸À¸À¸À½. À¸À¸À¸À¸À¸À½.
+¾ÕÀ¸·Î ÇÒ °Í Á¤¸®
+1) GlobalToLocalÀ» ÀÌ¿ëÇØ ¸¶¿ì½ºÀÌº¥Æ®
+2) Costume Á¤·Ä
+...Á¤µµ¹Û¿¡ ¶°¿À¸£Áö ¾Ê´Â´Ù
+ÇöÀç½Ã°¢ 15:37. MouseEvent¿¡ translate(int x, int y)¸Å¼­µå°¡ ÀÖ´Ù´Â »ç½ÇÀ» Ã³À½ ¾Ë¾Ò´Ù. 1)À» ´Þ¼ºÇÏ±â¿¡ ¾È¼º¸ÂÃãÀÎµí.
+MouseEvent°¡ ¾îÂ° Àß µÇÁú ¾Ê´Â´Ù;; ¾îÂ¼Áö ÀÌ°É
+
+20140417 ÇöÀç½Ã°¢ 09:07. GTLÀÌ ¸ÔÈ÷Áö ¾Ê´Â ÀÌÀ¯¸¦ Ã£¾Æ³Â´Ù. StageÀÇ mousePositionÀÌ null(...)
+StageÀÇ ÀÌ¸§À» HalloweenÀ¸·Î ¹Ù²å´Ù. ´ë½Å ÀÌÁ¦ Layer¸¦ Stage·Î ¹Ù²Ü»ý°¢
+±â¹¦ÇÑ ¹ö±×°¡ ÀÖ´Ù. Ã¹¹øÂ° childÀÇ Scale¶§¹®¿¡ µÎ¹øÂ° child°¡ Ãâ·ÂµÇÁú ¾Ê´Â´Ù. ’o¹Ì
+¾Æ´Ï, ¾î´À child¶óµµ ScaleÀ» ÇÏ¸é ³ª¸ÓÁö child°¡ º¸ÀÌÁö ¾Ê´Â´Ù. ’o¹Ì
+µÎ¹øÂ° child°¡ ScaleÇÒ¶§´Â ±×³É °¡·ÁÁ®¼­ ¾Èº¸ÀÌ´Â°É·Î ÆÇ¸í³µ´Ù(...) ±×·¸´Ù¸é ÀÌÀüÀÇ ScaleÀÌ ÀÌÈÄÀÇ child¿¡°Ôµµ ¿µÇâÀ» ³¢Ä£´Ù´Â ¼Ò¸®°ÚÁö
+ScaleÀÌ ÇÑ¹ø Àû¿ëÇÏ°í ³ª¸é ±× ÀÌÈÄ LocationÀÌ ¾È¸ÔÈ÷´Âµí ¤±¤¤¤·¤© ÀÌ°Ô ¹¹Áö
+ScaleÀ» °Å²Ù·Î ¸ÔÀÌ¸é ³ª¸ÓÁö¾ÖµéÀÌ Á¤»ó¤º... ¾Æ´Ï´Ù ÆÄ¶õ»ö³ðÀÌ ¹º°¡ ÀÌ»óÇÑ°÷¿¡ ³ª¿Ô¾î
+¾Æ¹«·¡µµ, CostumeÀÇ ÇØÁ¦´Â °Å²Ù·ÎÇÏ´Â°Ô ¸Â´Â°©´Ù. ¾ÆÈÞ. ¾ÆÈÞ¿ì¿ì¿ì. ArrayList·Î ½Ï´Ù°íÃÆ´Âµ¥. ´Ù½Ã LinkedList·Î ¹Ù²ã¾ß ÇÑ´Ù´Ï. svn¿¡ ³²¾ÆÀÖ´Â ±â·Ï°°Àº°Å ¾îµð ¾ø³ª
+À¸¾ÆÀ¸¾Ó¾î¾ÆÀ¸¾Æ¾îÀ¸¾Ó ¸Ó¸®°¡ ²¿ÀÎ´Ù! Graphics¿Í PointÀÇ ¼ø¼­°¡ µÚÁ×¹ÚÁ×ÀÌ¶ó¼­ LTG,GTLÀ» ±¸ÇöÇÏ±â°¡ ¾î·Á¿öÁø´Ù À¸¾Æ¾Æ¾Æ¾Æ¾Æ¾Æ¤¿¤¿¾Æ¾Æ ¹¹ ÀÌ·± °ÅÁö°°Àº
+¾îÂîµÇ¾úµç°£¿¡ ¿ø·¡´ë·Î µ¹·Á³õ´Â°Ç ¼º°øÇÑµí;;
+TreeSetÀÌ¶ó´Â°É ¹ß°ßÇß´Ù. Áßº¹µÈ°É Çã¿ëÇÏÁö ¾Ê´Â´í´Ù. °Ô´Ù°¡ ÀÚµ¿Á¤·Ä. ÀÌ¾ß, ÀÌ°Å Costume¿¡ µüÀÌÀÝ¾Æ? ÇØ¼­ ´Ù½Ã TreeSetÀ¸·Î º¯°æÇÒ »ý°¢....¾Æ.....¾Æ....¶Ç ¹Ù²ã¾ßÇÏ³ª.....Áö°ã´Ù ÀÌÁ¨....ÇÏ....
+À½?! ¹Ù²å´Âµ¥ ¿©ÀüÈ÷ descendingIterator()°¡ ¸ÔÈù´Ù?!!? ¿À¿À¿À ±¸¿ø¹ÞÀ½ ¿À¿À¿À
+Àû¿ëÇß´Ù. ±×·¨´õ´Ï dressUp()ÀÌ ¾ÈµÊ. ’o¹Ì
+¿ø·¡´ë·Î LinkedListµµ µ¹·Á³ù´Ù Á¦±æ
+¾ÆÂü, ¿À´Ã ¾ÆÄ§¿¡ »ý°¢³­°Å. Point2D.Double·Î ÇÏ·Á´Ï, ÀÌ°Ç ÀÌ°Å´ë·Î ºÒÆíÇÏ´Ù. ±×·¯´Ù »ý°¢³µ´Âµ¥, Point2D·Î ÇÏ¸é µÇÀÝ¾Æ?
+¹Ù²Ù°Ú´Ù. ¾îÂ° ¿äÁò ¹Ù²Ù±â¸¸ÇÏ´Â°Å°°´Ù....
+¹Ù²å´õ´Ï ¿¹»óÄ¡µµ ¸øÇÑ Rotation¹ö±×°¡ ÇØ°áµÇ¾ú´Ù. (ÁÁÀºÀÇ¹Ì·Î) ’o¹Ì
+¾Æ ±×·¯°íº¸´Ï HalloweenEngineÀÇ ¹öÀüÀÌ ¸îÀÌ³Ä(...)
+LayerÀÇ ÀÌ¸§À» Stage·Î ¹Ù²å´Ù. ¶Ç, HalloWeenÀÇ Root°ü·Ã ¸Å¼­µåµéÀÇ ÀÌ¸§À» ÀüºÎ Stage·Î Ä¡È¯Çß´Ù. ¿ø·¡ Stage¿´´ø ³à¼®¿¡°Ô »õ·Î¿î Stage¸¦ ³ÖÀÚ´Ï ±âºÐÀÌ ¿À¹¦ÇÑ°ÍÀÌ....
+¾î¶ó? child°¡ ÇÏ³ª¸¸ µé¾î°£´Ù?
+ÇöÀç½Ã°¢ 23:15. HalloweenÅ¬·¡½º¿¡ canvas¸¦ ¾µ±î »ý°¢ÁßÀÌ´Ù. ¿ØÁö ±×°Ô ´õ ¾ÈÁ¤µÇ¾îº¸ÀÓ....
+¹Ù²å´Ù. ÀÇ¿Ü·Î ½¬¿ü´Ù. ±×¸®°í Child°¡ Graphics¿¡ ÀÇÁ¸ÀûÀÎ°Í •û°í´Â °ÅÀÇ µ¶¸³ÀûÀÌ¿©¼­ Å« Å¸°ÝÀÌ ¾ø¾ú´Ù. È­¸é»ó¿¡ Àß Ãâ·ÂµÈ´Ù. ÀÌ´ë·Î¶ó¸é, ¾Èµå·ÎÀÌµå¿¡ ¹Ú¾Æ³Ö´Â°Íµµ ¾î·ÆÁö ¾ÊÀ»µí.
+´Ü, ÇÑ°¡Áö ¹®Á¦°¡ ÀÖ´Ù¸é, È­¸éÀÇ Å©±â. ´ëÃ¼ ¹º³ðÀÇ ¿µ¹®ÀÎÁö È­¸éÀÇ Å©±âÁ¶ÀýÀÌµÇ¸ç, Ã³À½¿¡ ÄÓ¶§ È­¸éÀÌ ÃÖ¼ÒÅ©±â·Î ³ª¿Â´Ù. ¿Í¿ì. ´ëÃ¼ ¹¹Áö
+¶ÇÇÏ³ª ¹®Á¦. ¸¶¿ì½ºÀÌº¥Æ®¸¦ ¹«½ÃÇÑ´Ù. ¿ÖÁö
+ÀÏ´Ü ¹ß»õÇÑ ¹®Á¦Á¡À» Á¤¸®
+1) È­¸éÅ©±âÁ¶ÀýÀÌ µÈ´Ù. frameÀÇ setResizeableÀÌ false¿©µµ ±×·¸´Ù.
+2) ¸¶¿ì½ºÀÌº¥Æ®¸¦ ¹«½ÃÇÑ´Ù
+
+20140418 ÇöÀç½Ã°¢ 10:44. ÀÏ´Ü,canvas°¡ ¿À±â ÀüÀÇ »óÈ²À¸·Î µÇµ¹·Á³ù´Ù.
+Á¢±Ù ¹æ½ÄÀ» ¹Ù²ÙÀÚ. canvas°¡ JPanel°¡ ¾Æ´Ï¶ó, BufferedImage¸¦ ´ëÃ¼ÇÏ°ÔÇÏÀÚ. ±×°Ô ³ªÀ»°Å°°´Ù.
+ÀÌ°Íµµ Àß µÇÁú ¾Ê´Â´Ù. ¾Æ. Á¨Àå. ÀÌ¹Ì ÀÌ JPanel¿¡ Ä£È­ÀûÀÎ ½Ã½ºÅÛÀÌ µÇ¾î¹ö·È¾î
+BufferedÃ³·³ ºÐ¸®¸¦ ÇÏ´Â°Ô ¾Æ´Ï¶ó, JPanel¿¡ canvas¸¦ Ãß°¡ÇØº¸´Â°Ç ¾î¶³±î? ±×°Ô Á» ´õ Á¤»óÀûÀÎ ¹æ¹ýÀÌÀÝ¾Æ?
+µµÀúÈ÷ ÀÌÇØ°¡ ¾ÈµÇ³×. ¿Ö canvas¸¦ È­¸é¿¡ Ç¥½ÃÇÏ¸é ¹«Á¶°Ç È­¸éÅ©±âÁ¶ÀýÀÌ °¡´ÉÇØÁö´Â°ÅÁö?!
+canvas´Â ¸ø±¸ÇßÁö¸¸, ´ë½Å BufferStrategy´Â ±¸ÇÒ ¼ö ÀÖ´Ù´Â°ÍÀ» ¾Ë¾Ò´Ù. ´ÙÇàÀÌ´Ù. ±×°Å³ª¸¶ ±¸ÇÑ°Ô ¾îµð¿©
+±«»óÇÑ »ý°¢À» ÇÏ³ª Çß´Ù. JComponent¿¡ ´ëÇØ Á¶±Ý ¿¬±¸ÇÑ µÚ¿¡, Child¸¦ JComponent¸¦ »ó¼ÓÇÏ°Ô ¸¸µå´Â°Ç ¾î¶³±î. ±×°É ÇÏ³ªÇÏ³ª ±¸ÇöÇÏ´À¶ó °³°í»ýÇÏÁö ¸»ÀÚ´Â°ÅÁö. ¿¹Àü¿¡´Â ÀÌÇØ¸¦ ¸øÇØ¼­ ÇÒ ¼ö ¾øÀÌ µû·Î ±¸¼ºÇÒ ¼ö ¹Û¿¡ ¾ø¾úÁö¸¸, ÀÌÁ¦ ¾î´ÀÁ¤µµ ÀÌÇØÇßÀ¸´Ï ±×°É ±â¹ÝÀ¸·Î ¸¸µå´Â°ÅÁö! »ç½Ç, child¿Í JComponent¿ÍÀÇ Å« Â÷ÀÌ°¡ ¾øÀÝ¾Æ?
+¸ÁÇÒ. ¾öÃ»³­ »ç½ÇÀ» ±ú´Þ¾Ò´Ù. È­¸éÀÇ Å©±âÁ¶ÀýÀÌ °¡´ÉÇÑ°Ç canvasÅ¿ÀÌ ¾Æ´Ï¾ú´Ù! ¸ÁÇÒ! À¸¾Æ¾Æ¾Æ! Test1¿¡ setResizeable(true)°¡ ÀÖ¾ú¾î! À¸¾Æ¾Æ¾Æ¾Æ¾Æ¾Æ! ½Ã¹Ù!! ½Ã¹Ù¶ó¶ó¾Æ¾Æ¾Æ¤¿¾Æ¾Æ¤¿¾Æ¾Æ¾Æ À¸¤Ñ¾Ó´Ã.¤Ã¤¿¤··ç¤¿´ÏÀ¸¹Ì¤¿¤Ç¤©·ç¤¿¤±
+¿¹»ó´ë·Î, canvas¸¦ ³Ö´Â°Ç È­¸éÅ©±âÁ¶Àý¿¡ ¾Æ¹«·± ¿µÇâÀ» ³¢Ä¡Áö ¾Ê¾Ò´Ù. ´Ù¸¸, ¸¶¿ì½ºÀÌº¥Æ®¸¦ JFrameÀÌ ¾Æ´Ï¶ó canvas¿¡ ÇØ¾ßÇÑ´Ù. ±×°Ô À¯ÀÏÇÑ ´Ù¸¥Á¡ÀÌ´Ù. Â÷¶ó¸® ÀÌ°Ô ³ªÀ»Áöµµ
+ÁÁ¾Æ. Àü¸éÀûÀÎ ¼öÁ¤¿¡ µé¾î°£´Ù. Á¨Àå. ¾Æ±î±×°Å svn¿¡ ÀúÀåÇØµÑ°É
+´ÙµÆ´Ù! ¸¶À½¿¡ µç´Ù. ¿À ¿¹
+¸î°¡Áö ¾ÆÀÌµð¾î¸¦ Ãß°¡ÇÏ·Á°í ÇÑ´Ù.
+1. frameÀ» µû·Î ÁØ´Ù. ´Þ¶ó°í ÇÏ±â Àü±îÁø ¾ÈÁØ´Ù. ¾Èµå·ÎÀÌµå°¡ ¾î¶²ÇüÅÂÀÎÁö ¾ÆÁ÷ ¸ð¸£´Ï, canvas¸¦ Áß½ÉÀ¸·Î ÀÛµ¿ÇÏ°Ô ÇÒ »ý°¢ÀÌ´Ù. ¾Èµå·ÎÀÌµå¿¡µµ canvas¸¦ ¾ñÀ¸¸é µÇ´Ï±î.
+2. Child¸¦ JComponent¸¦ »ó¼ÓÇÏ°Ô ÇÏ·Á ÇßÁö¸¸, JComponent°¡ ³Ê¹« Å©´Ù. Child¿¡´Â LocationÀÇ °³³äÀÌ ¾ø±âµµ ÇÏ°í, ¹º°¡ Â÷º°È­ÇÏ°í½ÍÀ¸´Ï±î. ±×·¡¼­, ChildComponent¸¦ ¸¸µé±î ÇÑ´Ù.
+ÇöÀç½Ã°¢ 23:19. ½ºÆÀ¼Ò³à¸¦ ¸¸µé´Ù°¡ ÁöÃÄ¼­ ¿Ô´Ù. ³»°¡ Àú »¹Áþ ¾ÈÇÏ·Á°í ¿£Áø ¸¸µé°íÀÖ´Â°Çµ¥ Àú°É ´Ù½ÃÇÏ°Ô µÉ ÁÙÀÌ¾ß....À¸À¸À¸À¸À¸ ¹ß¾ÏÀë
+±×·¯´Ù°¡ Test1À» ÄÑ¸é ¸· ¿µÈ¥ÀÌ Á¤È­µÈ´Ù. ¾Æ¾Æ¾Æ....ÀÌ ¾ó¸¶³ª ÈÇ¸¢ÇÑ ¿£ÁøÀÎ°¡....È­¸é¿¡ Ãß°¡ÇÏ¸é ±×³É »ý±ä´Ù´Ï....
+Shape¸¦ ÀÌ¿ëÇØ, ShapedChild¸¦ ¸¸µé¾ú´Ù. ÀÌÁ¦ ±âÁ¸ÀÇ RectangleShapedChild¿Í CircleShapedChild´Â Åð¿ªÀÌ´Ù!
+¾Æ....¿À·§µ¿¾È °°ÀÌÇØ¿Â ³à¼®µéÀÎµ¥.....Á» ¹Ì¾ÈÇÏ±âµµ ÇÏ°í....±×µ¿¾È °í¸¶¿ü´Ù
+Áö¿ìÀÚ¸¶ÀÚ imamedChild°¡ ´çÀå Å¸°ÝÀ» ÀÔ¾ú´Ù. ±×·¸±¸³ª. ³Ê RectangleShapedChild »ó¼ÓÇÏ°íÀÖ¾ú±¸³ª....SVNÀÌ È°¾àÇÒ¶§´Ù. Àì½Î°Ô º¹ºÙ. ÀÚ, ÀÌÁ¦ ÀÌ ¸Å¼­µå´Â ³Ê°¡ ¹°·Á¹ÞÀº°Ô ¾Æ´Ï¶ó ³Ê°¡ °¡Áö°íÀÖ´Â °íÀ¯ÀÇ ¸Å¼­µå¶õ´Ù!
+³ª ¿Ö Å¬·¡½º¶û ´ëÈ­ÇÏ´Â°Å¾ß
+¸ðµÎ ShapedChild·Î º¯°æ ¿Ï·á! ´ÜÁö ¾Æ½¬¿îÁ¡ÀÌ¶ó¸é, ²ËÂù ±×¸²ÀÌ ¾Æ´Ï¶ó ±×³É ÅÖºó ±×¸²À¸·Î ¹Ù²î¾ú´Ù´Â Á¤µµ..... ±×·¡µµ ÀÌ°Ç ÀÌ°Å³ª¸§´ë·Î ÀÌ»µ¼­ ºÁÁÜ ¤·¤· 
+
+20140419 ÇöÀç½Ã°¢ 12:09. À¸¾î¾ÆÀ¸¾î¾ÆÀ¸¾Æ Áß°£°í»ç ½È´Ù À¸¾î¾ÆÀ¸¾î¾ÆÀ¸
+Á¶°¨µµÀ§Ä¡ ¸¸µç´Ù! ÇÏ! À¸ÇÏ¾Æ!
+
+20140420 ÇöÀç½Ã°¢ 00:00. ±¤¼®ÀÌ¿Í °ÔÀÓÀ» ¸¸µé´Ù°¡ »ìÂ¦ ½Ã°£ÀÌ ³ª¼­ ÀÌÂÊÀ¸·Î ¿Ô´Ù.
+Test2¸¦ ¸¸µé¾ú´Ù. ¾Æ±î BirdEyeWitch¸¦ ´ëÃæ ±¸¼ºÇß´Âµ¥, ±×°É È®ÀÎÇÒ ÇÊ¿ä°¡ ´À²¸Á®¼­...
+¹®µæ »ý°¢ÀÌ µé¾ú´Âµ¥, Witch¸¦ ¹Ù²Ü¶§ ±âÁ¸ÀÇ childµéÀ» ´Ù »õ·Î¿î witch¾Æ·¡·Î ¿Å°ÜÁÖ³ª?
+¾ÈÇØÁØ´Ù. ³ªÁß¿¡ ¹Ù²ã¾ß°Ú±º
+´ëÇü»ç°í¸¦ Ä¡°í¾ß ¸»¾Ò´Ù. LayoutWitch¸¦ interface·Î ¹Ù²Û°Í! À¸À¸....¶Ç »¡°£°Ô °¡µæ....
+»¡°£°É ´Ù ¾ø¾Ý´Ù. ÀÌÁ¦ »¡°£°Å ¾ø¾Ö±â´Â ¹¹ °ÅÀÇ ¼±¼ö±ÞÀÌ³×
+°¨µ¿¸ÔÀ»»·Çß´Ù. ¾Æ´Ï ÀÌ·¸°Ô ¸ÚÁø ¸ð½ÀÀÌ µÉÁÙÀÌ¾ß.....BirdEyeWitch´Â ¾Æ¸¶ ÀÌ Halloween¿£ÁøÀÇ ÁÖ·Â ½ÅÂüÈ£ÀÌÈ£ÀÌ°¡ µÇÁö ¾ÊÀ»±î »ý°¢ÇÑ´Ù
+ÇöÀç½Ã°¢ 14:01. ¤±¤¤¤·¤© °­ÀÇÇÏ·¯ ¿Í¼­ À×¿©ÇÏ°Ô ½Ã°£Á×ÀÌ´ÂÁß
+¾ÆÄ§¿¡ ´À±ßÇÏ°Ô BirdEyeWitchÀÇ ZÃàÀ» Ãß°¡Çß´Ù. ÆÒÆ¼¸¦ °¥¾ÆÀÔ¾î¾ßÇß´Ù. Áö¸°´Ù ÁöÁ¯
+ÀÏ³µ³×....¸¶¿ì½º ¿ÞÂÊ/¿À¸¥ÂÊ Å¬¸¯ ±¸ºÐÀ» ¾ÈÇÑ´Ù. ¹¹Áö ´ëÃ¼
+´Â ³ª ¹¹ÇÔ ¸¶¿ì½º µå·¡±×ÀÌº¥Æ®ž¤»¤»
+
+20140421 ÇöÀç½Ã°¢ 10:06. ½ÃÇè±â°£¿¡ ¹¹ÇÏ½Ê´Ï±î, ½Å¼º¹Î¾¾?
+LayoutWitch¿¡ Stage¸¦ ÀÎÀÚ·Î ³Ñ°ÜÁÙ±î »ý°¢ÁßÀÌ´Ù. Stage¿¡ ÀÖ´Â ChildµéÀÇ À§Ä¡¸¦ ÀçÁ¤·ÄÇÏ°Ô ÇÏ°í½Í±âµµ ÇÏ°í, LayoutWitchÀÚÃ¼°¡ Stage¿¡ ÀÖ´Â ChildµéÀ» °ü¸®ÇÏ´Â°Çµ¥, ¿©±â¿¡ Á÷Á¢ °ü¿©ÇÒ ¼ö ¾ø´Ù¸é ³ªÁß¿¡ ¹º°¡ À§ÇèÀÌ »ý±æÁöµµ...
+»ý¼ºÀÚ¿¡ ³ÖÀ»±î ÇÏ´Ù°¡ °üµ×´Ù. ´ë½Å ´õ ÈÇ¸¢ÇÑ ¹æ¹ýÀÌ »ý°¢³µ´Ù. LayoutWitch¿¡ setStage¸Å¼­µå¸¦ ³Öµµ, Stage¿¡ ÀÖ´Â setLayoutWitch¸Å¼­µå¿¡¼­ °Á ÀÌ°É È£ÃâÇÏ¸é µÈ´Ù! »ý¼ºÀÚ¿¡ Stage¸¦ ³ÖÀ¸¸é »ç¿ëÀÚ°¡ ÀÌ Witch¸¦ ¸¾´ë·Î »ý¼ºÇÏ±â°¡ Âü °ï¶õÇØÁö´Ï±î, ÀÌ ¹æ¹ýÀÌ ´õ ÀûÀýÇÒµí.
+³ªÁß¿¡´Â Stage¿¡ ÀÖ´Â Child¸ñ·ÏÀ» ºÒ·¯¿Í ±×³É....¾Æ´Ï´Ù! Child¸¦ Å°·Î °¡Áö´Â MapÀ» ¸¸µå´Â°Ç ¾î¶³±î? ¿À¿À¿À!! ³ª ÃµÀçÀÎµí?
+±×°É Áö±Ý ÀÛ¾÷ÇÏ±â¿¡´Â....¾à°£ Å« ¹®Á¦ÀÏµí ÇÏ´Ï....³ªÁß¿¡ 1~2½Ã°£Âë ¿©À¯°¡ ÀÖÀ»¶§ ÇÏµµ·Ï ÇÏÀÚ. TODO¿¡ ½á³õÀ¸¸é ³»°¡ º¼·Á³ª ¸ð¸£°Ú³×
+Stage¿¡¼­ setWitch¸¦ È£ÃâÇÏ¸é LayoutWitchÀÇ setStage¸¦ È£ÃâÇÏ°í, setStage´Â StageÀÇ Witch°¡ ÀÚ±âÀÚ½ÅÀÌ ¾Æ´Ï¸é ´Ù½Ã ±× StageÀÇ setWitch¸¦ È£ÃâÇÏ´Â....¾óÇÍº¸¸é ³¡ÀÌ¾ø´Â Àç±Í·Î º¸ÀÌÁö¸¸, »ç½Ç 2´Ü°è ÀÌ»ó ½ÇÇàµÇÁö ¾Ê´Â ÃÊ´Ü¼ø ¸Å¼­µå´Ù
+ÇöÀç½Ã°¢ 14:04. ¤¤¤±¾Æ¤ÃÈÄ;¹Ö¶ó¤Ç¤·¤±·ÁŸµ¤©!!!!!!!!!!!!!!!!!!!! BirdEyeWitch¿¡°Ô Ãâ·Â¼ø¼­(Depth)¸¦ °áÁ¤ÇÒ ¼ö ÀÖ°Ô ÇØÁá´Ù. ±×·¡¼­ ÀÌÁ¦ µÚ¿¡ÀÖ´Â ³à¼®ÀÌ ¾Õ¿¡ÀÖ´Â ³à¼®À» °¡¸®Áö ¾Ê´Â´Ù!!!! ÀÌ¿¹¿¡¿¡¿¡!!! ÃãÀ»ÃßÀÚ ¶ò°¡¶ò°¡ ±âºÐ ¿ÏÀüÁÁ¾Æ
+¶¥¿ªÇÒÀ» ÇÏ´Â BirdEyePositionÀ» µû·Î ¸¸µéÁö ¾Ê°í, ±× ÀÚÃ¼ ³»¿¡ ½º½º·Î º¯½ÅÇÒ ¼ö ÀÖ°Ô ¸¸µé¾îµ×´Ù. ´öºÐ¿¡ È­¸éÈ¸Àü¿¡ µû¶ó ¹ßÆÇÃ³·³ ºñ½ºµëÇÏ°Ô Ãâ·ÂµÈ´Ù!!! ÇÏÁö¸¸.... ÀÏ´ÜÀº ÀÌ·¸°Ô ¸¸µé¾î µ×Áö¸¸, º®µµ Ãß°¡ÇÒ »ý°¢ÀÌ¶ó¼­ °á±¹¿£ »ó¼Ó¹Þ´Â ³à¼®À¸·Î ¹Ù²ã¾ßÇÒµí½Í´Ù.
+
+20140422 ÇöÀç½Ã°¢ 10:56. Àç¹ÌÀÖ´Â°É ¹ß°ßÇß´Ù. transformÀÌ¶ó´Â ³à¼®ÀÎµ¥, PointCostumeÀÌ ÇÏ´Â ¿ªÇÒÀ» ´Ù ÇÏ°íÀÖ´Ù. PointCostumeÀ» ÀÎÅÍÆäÀÌ½º·Î ¸¸µé°ÍÀÌ ¾Æ´Ï¶ó, ¾Æ¿¹ ÀÚÃ¼ÀûÀÎ Å¬·¡½º·Î ¸¸µé¾îµµ µÉ°Í°°´Ù.
+¾îÂ° µÚ·Î °¥¼ö·Ï ²¿ÀÎ´Ù. ¿À´Ã Á¶±Ý Ãæ°ÝÀûÀÎ »ç½ÇÀ» ¾Ë¾Ò´Âµ¥, ¾îÂ¼¸é Ã³À½ºÎÅÍ ´Ù½Ã ´Ù Â¥¾ßÇÒÁöµµ ¸ð¸£°Ú´Ù. lookDegree°¡ 90µµ¸¦ ³Ñ´Â ¼ø°£ ÀÌ»óÇÑ°÷¿¡¼­ Ãâ·ÂµÇ´Â³ðÀÌ ÀÖ´Ù. ¹¹Áö
+Ã³À½ºÎÅÍ Â© ÇÊ¿ä´Â ¾ø¾ú´Ù. ÁÂÇ¥´Â Á¤»óÀûÀ¸·Î ³ª¿À´Âµ¥, ´ÜÁö Ãâ·ÂÀÌ Á¶±Ý ¾ÈÅ¸±î¿ï »ÓÀÌ¾ú´Ù. ±×¸®°í Áö±Ý ±×°Ô Áß¿äÇÑ°Ô ¾Æ´Ï´Ù! ¼öÇÐÀÇ ½ÅÀÌ¶óµµ °­¸²ÇÏ¿´´ÂÁö, ³ªµµ ÀÌÇØ¾ÈµÉÁ¤µµÀÇ ¿Ï¼ºµµ°¡ ³ª¿Ô´Ù! ¿À¿¹! ÀÌÁ¦ ¿ÏÀüÇÑ Å¥ºê¸¦ Ç¥ÇöÇÒ ¼ö ÀÖ´Ù. µù°¡µù°¡ µù°¡µù°¡
+
+20140423 ÇöÀç½Ã°¢ 09:05. BirdEyeWitch¸¦ BirdViewWitch·Î ÀÌ¸§À» ¹Ù²å´Ù. ÀÌÁ¦ ÀÌ³à¼®Àº ´õ ÀÌ»ó °ÇµéÇÊ¿ä°¡ ¾ø¾îº¸ÀÎ´Ù. Áö±Ý ¿å½É¿¡, º®µµ ¸¸µé¾î¼­ ¼¼¿ì°í ½Í±ä ÇÑµ¥.....ÀÌÁ¦ ½½½½ ´Ù¸¥³à¼®µµ ¸¸Áú¶§°¡ µÈ°Å°°°í....
+ÀÏ´Ü, °³¹ßÀÏÁö¸¦ º¸¸é¼­ ÇØ¾ßÇÒÀÏÀ» Á¤¸®ÇÑ´Ù.
+1. Child¸¦ MapÀ¸·Î ÀúÀåÇÏ´Â ÇÊµå¸¦ µû·Î ÁØºñÇÑ´Ù
+2. ChildComponent¸¦ ¸¸µç´Ù
+3. PointCostum¿¡ TransformÀ» È°¿ë
+4. ShapedChild°³¼±. (»ö±ò ²ËÃ¤¿ö ±×¸®±â ¿©ºÎ, ÁÂÇ¥ Á¶Á¤)
+ÇöÀç½Ã°¢ 15:01. ½ÃÇè°øºÎ°¡ ½È¾î ¸¸Áö±â ½ÃÀÛÇß´Ù.
+¿ì¼±, ingame¿¡ ÇÑ¹ø ±×¸° µÚ¿¡ ´Ù½Ã canvas¿¡ ±×¸®´Â ¹æ½ÄÀ» Æó±âÇß´Ù. HalloweenÀÌ °¡Áö°í ÀÖ´Â stage¿¡ CostumeÀ» ÀÔÈ÷´Â ¹æ½ÄÀ¸·Î È®´ë,Ãà¼Ò¿Í ÁÂÇ¥¸¦ ±¸ÇöÇÒ ¼ö ÀÖ±â ¶§¹®ÀÌ´Ù. ±»ÀÌ µÎ¹øÀÌ³ª ±×¸²À» ±×¸± ÇÊ¿ä°¡ ¾ø´Ù! ¼Óµµ°¡ °³¼±µÇ¾úÀ¸¸®¶ó°í ¹Ï´Â´Ù.
+°Ô´Ù°¡ ÀÌ ¹æ¹ýÀÌ¶ó¸é È­¸é¿¡ Æ¯¼öÈ¿°ú¸¦ ÁÖ´Â °Íµµ °¡´ÉÇÏ´Ù! CostumeÀÇ È°¿ëµµ´Â ÀÇ¿Ü·Î ¹«±Ã¹«ÁøÇÑµí. È­¸é¿¡ Opacity¸¦ ¸ÔÀÌ¸é ¾îÁú¾îÁúÇÑµíÇÑ È¿°úµµ ÁØ´Ù! ÀÌ¾ß¾Æ....³¡³»ÁÖ³×
+´Ü, ÇÑ°¡Áö ¾Æ½¬¿îÁ¡ÀÌ ÀÖ´Ù. È­¸é¿¡ ScaleÀ» °É¾î¹ö·ÈÀ»¶§ÀÇ ÀÌ¾ß±âÀÎµ¥, ±×·¯¸é È­¸é ÀüÃ¼¸¦ ÇÑ¹ø Áö¿ì´Â ÀÛ¾÷ÀÌ ¾ÈµÈ´Ù. Á¤È®È÷ ¸»ÇÏÀÚ¸é, È­¸éÀ» ½Ï Áö¿ì´Â°Ô »ç½Ç È­¸éÅ©±â¸¸Å­ ³×¸ð¸¦ ±×·Á µ¤¾î¹ö¸®´Â ¹æ½ÄÀÎµ¥, graphics¿¡ ScaleÀÌ °É¸®¸é È­¸é ÀüÃ¼¸¦ ¸øµ¤´Â ³×¸ð°¡ ±×·ÁÁö´Ï±î....À½....ÀÏ´ÜÀº È­¸éÁö¿ì±â´Â CostumeÀÇ ¿µÇâÀ» ¾È¹Þ°Ô ¸¸µé¾î¾ß°Ú´Ù.
+ÀÌÁ¦ ½½½½ °ÆÁ¤ÀÌ´Ù. ¾Öµé³¢¸® synchronize°¡ ¾ÈµÇ¾î °è¼Ó Ãæµ¹ÇÑ´Ù. ¾îÂ¼Áö
+
+20140424 ÇöÀç½Ã°¢ 11:26. ¿À´ÃºÎÅÍ´Â »õ·Î¿î°É ÇÒ »ý°¢ÀÌ´Ù.
+PerspectiveWitch¸¦ ¸¸µé¾ú´Ù. ¿ø·¡ÀÖ´Â ¾ÖµéÀº ¾È°Çµå¸®°í ¿Ö ÀÚ²Ù »õ·Î¿î¾Öµé Ãß°¡ŸD¤»
+±×¸®°í....Áö³­¹ø¿¡ ¸»Çß´ø transform, ÇÑ¹ø ¸¸Á®º¼±î
+PerspectiveWitch°¡ ¾î´ÀÁ¤µµ ±¸¼ºµÇ¾ú´Ù. ¶ÇÇÑ, PointCostumeÀº ÀÌÁ¦ abstractµµ ¾Æ´Ñ ±× ÀÚÃ¼ÀûÀÎ Å¬·¡½º´Ù. »ç½Ç ±× ÇÏÀ§Å¬·¡½ºµéÀÌ PointCostumeÀÇ ±â´ÉÀ¸·Î ³¯·Î¸ÔÀ¸·Á°í Çß´Âµ¥, ¾ö.....±×·¯±â¿£ ÀÌ¹Ì ÅºÅºÇÏ°Ô ¸¸µé¾îÁ®ÀÖ´Â ³ðµéÀÌ¶ó, µüÈ÷ °ÇµéÁö ¾Ê¾Ò´Ù.
+PerspectiveWitch°¡ »ý°¢ÇÑ´ë·Î Àß ÀÛµ¿ÇØÁÖ¾î Âü °í¸¿´Ù. ±Ùµ¥ ÇÑ°¡Áö ¹®Á¦°¡ »ý°å´Ù. ¾Æ´Ï »ý°å´Ù±âº¸´Ù´Â, ¿ø·¡ºÎÅÍ ÀÖ¾ú´ø ¹®Á¦°¡ ÀÌÁ¦ µå·¯³ª±â ½ÃÀÛÇÑ´Ù. ÀÚ½ÅÀÌ Æ÷ÇÔµÇ¾îÀÖ´Â ChildÀÇ ÁÂÇ¥¿Í ÀÚ±â ÀÚ½ÅÀÇ Point¸¦ Çò°¥·ÁÇÏ´Âµí. ±Ùµ¥ ¾îÂ° ÀÌ°Ç ³»°¡ ÀÚÃÊÇÑÀÏÀÎ°Å°°´Ù. À¸À¸....
+À­±ÛÀ» ¾´Áö 1ºÐ¸¸¿¡ ÇØ°áµÊ ³­ ÃµÀçÀÓ
+ÇØ°á ¾ÈµÈµí ¤¸¤µ
+ÇØ°áÇÔ ³­ ÃµÀçÀÓ
+
+20140425 ÇöÀç½Ã°¢ 00:22. »ç½Ç ½Ã°£ÀÌ ÃË¹ÚÇÑµ¥, ÀÌ°Ô ÀÚ²Ù ¸Ó¸®¿¡ ¸Éµ¹¾Æ¼­ °øºÎ¿¡ ÁýÁßÇÒ ¼ö°¡ ¾ø´Ù. ÇÏ Á¨Àå ¿Ö Áß°£°í»ç°¡ ÀÖ´Â°Å¾ß. ¾Æ¹«Æ°, LayoutManager¿¡ ´ëÇÑ ±ÛÀÌ´Ù.
+LayoutManager´Â ÇöÀç ÀÎÅÍÆäÀÌ½º·Î ¹Ù²ï »óÅÂ´Ù. »ç½Ç Àú·¸°Ô ¹Ù²Ù´Âµ¥ ¾à°£ Å« °ø»ç¸¦ °ÅÃÆ´Ù. ±×·¯³ª Àß »ý°¢ÇØº¸¸é, LayoutWitch¾ß¸»·Î Á¦³×¸¯¿ë¹ýÀ» ½á¾ßÇÏ´Â ºÎºÐÀÌ´Ù! ³ª ¿Ö ¸ÛÃ»Àë. ÀÌÀüÀÇ LayoutWitch´Â ¸Å¼­µå¸¸ Á¦³×¸¯À» ¿ì°Ü³ÖÀ¸·Á´Ù°¡ ¿ÏÀüÈ÷ ¸ÁÇÑ ÄÉÀÌ½º´Ù. ±×·¯³ª Àß »ý°¢ÇØº¸´Ï Á¦³×¸¯ÀÌ Æ÷ÇÔµÈ LayoutWitch¸¦ »ó¼ÓÇÑ´Ù°í Á¦³×¸¯ÀÏ ÇÊ¿ä´Â ¾ø´Ù. ¾Æ´Ï, Áö±Ý LayoutWitch¸¦ »ó¼ÓÇÏ°íÀÖ´Â ³à¼®µéÀ» ±¸ÇöÇÏ´Â ¹æ½ÄÀÌ »ç½Ç Á¦³×¸¯À» ÀÌ¿ëÇÏ¸é ÀÌ·± °³³ë°¡´Ù¸¦ ÇÒ ÇÊ¿ä°¡ ¾ø´Ù! Å©À¹. ½ÃÇè ³¡³ª¸é Á¦ÀÏ ¸ÕÀú ÇØ¾ßÇÒÀÏÀÌ Áö±Ý.....¾Æ´Ï´Ù. »ç½Ç ¹Ù²Ù´Âµ¥ ±×·¸°Ô ¿À·¡°É¸®Áö ¾Ê´Âµ¥. Áö±ÝÀÌ¶óµµ Àì½Î°Ô ÇÏ¸é.....
+µÆ´Ù. »¡°£»öÀ» ¸¹ÀÌ »ý°åÁö¸¸....ÀÌÁ¦ ¾È½ÉÀÌ´Ù!
+ÀÏ´Ü ½ÃÇèÀÌ ³¡³ª¸é ÇÒ°Íµé
+1. »¡°£°Å ´Ù ¾ø¾Ö±â
+2. ChildComponent
+3. ShapedChild°³¼±
+4. FallingWitch°³¹ß ½ÃÀÛ
+ÇöÀç½Ã°¢ 11:44. ÀÚ¹Ù ½ÃÇèÀ» ¾ÆÁÖ¾ÆÁÖ ÀßºÃ´Ù. ¹¹ ²­ÀÌÁö. ÇÏ³ª Æ²¸°°Å¸¸ Á» ±×·¸´Ù¸¸.... ÀÌÁ¦ ÀÚ¹Ù°­ÀÇ½Ã°£. ÇÁ·Î¹Ùºô¸®¶ì¿¡ ´ëÇØ »ý°¢ÇÏ°í½ÍÁö ¾ÊÀ¸´Ï, ÀÌ°ÉÇÏ¸ç ±âºÐÀ» Á» Ç®·Á°íÇÑ´Ù.
+°­ÀÇ°¡ ³¡³­ ½ÃÁ¡, ÇöÀç½Ã°¢ 12:33. ÀÌÁ¦ È®Åë°øºÎ¸¦ ÇØ¾ßÇÏ´Âµ¥.....
+WitchµéÀÌ ´ë°Å Âª¾ÆÁ³´Ù. locate(), remove(),getPosition()µî ±â´ÉÀÌ °ãÄ¡´Â ¾ÖµéÀº ÀüºÎ »ó¼ÓÇÑ°ÍÀ» °ÅÀÇ ±×´ë·Î ¾²±â¶§¹®. »ó¼ÓÀº ÀçÈ°¿ëÀÌ¶ó´Â ¸»¿¡´Â ¹Ý´ëÇÏ°íÀÖ¾úÁö¸¸, ÀÌ¹ø¸¸Å­Àº ´ëÂù¼ºÀÌ´Ù. Á¦³×¸¯ ¸¸¼¼. »ó¼Ó ¸¸¼¼
+»¡°£°Å¸¦ ´Ù ¾ø¾Ø°Íµµ ÁÁÁö¸¸, ¾ÕÀ¸·Î ¸¸µé Witchµµ ÀÛ¾÷·®ÀÌ ´ëÆø ÁÙ¾îµé°ÍÀ¸·Î ¿¹»óµÈ´Ù. ¾Æ ÀÌ ¾ó¸¶³ª ±â»Û ¸»ÀÌ¶õ ¸»ÀÎ°¡.

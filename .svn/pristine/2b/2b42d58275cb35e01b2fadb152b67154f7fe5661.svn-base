@@ -1,0 +1,231 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.major;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferStrategy;
+import java.util.Iterator;
+
+import javax.swing.JFrame;
+import javax.swing.Timer;
+
+import com.gmail.sungmin0511a.costume.Costume;
+import com.gmail.sungmin0511a.drawAbles.Party;
+import com.gmail.sungmin0511a.drawAbles.Stage;
+
+/** @author 신성민 */
+public class Halloween {
+	static boolean play;
+	
+	/** @return */
+	public static boolean playing() {
+		return play;
+	}
+	
+	BufferStrategy bufferStrategy;
+	Canvas canvas;
+	Party cursorIcon;
+	JFrame frm;
+	Point mousePosition;
+	int presentLayer;
+	Timer timer;
+	private Dimension size;
+	private Stage stages[];					// DrawAble들이 담기는곳
+	
+	/**
+	 * 
+	 */
+	public Halloween() {							// 생성자
+		super();
+		presentLayer = 0;
+		size = new Dimension(640, 480);
+		frm = new JFrame();
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frm.setResizable(false);
+		frm.setSize(size);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		frm.setLocation((dimension.width - size.width) / 2, (dimension.height - size.height) / 2);
+		frm.setVisible(true);
+		canvas = new Canvas();
+		frm.add(canvas);
+		canvas.setSize(size);
+		canvas.setBackground(Color.black);
+		canvas.createBufferStrategy(2);
+		bufferStrategy = canvas.getBufferStrategy();
+		stages = new Stage[1];
+		stages[0] = new Stage("Stage");
+		play = true;
+		cursorIcon = new Party("CursorIcon");
+		mousePosition = new Point();
+		ImageStorage.getImageStorage();
+		canvas.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_CLICKED);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_ENTERED);
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_EXITED);
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_PRESSED);
+			}
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_RELEASED);
+			}
+		});
+		canvas.addMouseMotionListener(new MouseMotionListener() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				try {
+					mousePosition.x = canvas.getMousePosition().x;
+					mousePosition.y = canvas.getMousePosition().y;
+					e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				} catch (NullPointerException ne) {
+				}
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_DRAGGED);
+			}
+			
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				try {
+					mousePosition.x = canvas.getMousePosition().x;
+					mousePosition.y = canvas.getMousePosition().y;
+					e.translatePoint(mousePosition.x - e.getX(), mousePosition.y - e.getY());
+				} catch (NullPointerException ne) {
+				}
+				getStage().processMouseEvent(e, MouseEvent.MOUSE_MOVED);
+			}
+		});
+		;
+		timer = new Timer(10, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
+				g.setColor(new Color(250, 250, 250));
+				Iterator<Costume> iterator = getStage().getCostumes().iterator();
+				while (iterator.hasNext())
+					((Costume) iterator.next()).dressUp(g);
+				g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+				getStage().draw(g);
+				iterator = getStage().getCostumes().iterator();
+				cursorIcon.draw(g);
+				if (!bufferStrategy.contentsLost()) {
+					bufferStrategy.show();
+				}
+			}
+		});
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				timer.start();
+			}
+		}).run();
+	}
+	
+	/** @param l */
+	public synchronized void addMouseListener(MouseListener l) {
+		canvas.addMouseListener(l);
+	}
+	
+	/** @param l */
+	public synchronized void addMouseMotionListener(MouseMotionListener l) {
+		canvas.addMouseMotionListener(l);
+	}
+	
+	/** @param l */
+	public synchronized void addMouseWheelListener(MouseWheelListener l) {
+		canvas.addMouseWheelListener(l);
+	}
+	
+	public Canvas getCanvas() {
+		return canvas;
+	}
+
+	/** @return */
+	public Party getCursorIcon() {
+		return cursorIcon;
+	}
+	
+	/** @return */
+	public JFrame getFrame() {
+		return frm;
+	}
+	
+	public Point getMousePosition() {
+		return new Point(mousePosition.x, mousePosition.y);
+	}
+
+	/** @return */
+	public int getPresentLayer() {
+		return presentLayer;
+	}
+	
+	/** @return */
+	public Stage getStage() {
+		return stages[presentLayer];
+	}
+	
+	/** @return */
+	public Timer getTimer() {
+		return timer;
+	}
+	
+	/**
+	 * 
+	 */
+	public void playTheWorld() {
+		play = true;
+	}
+	
+	/** @param presentLayer */
+	public void setPresentLayer(int presentLayer) {
+		if (stages.length < presentLayer + 1) {
+			Stage result[] = new Stage[presentLayer + 1];
+			int i;
+			for (i = 0; i < stages.length; i++) {
+				result[i] = stages[i];
+			}
+			stages = result;
+		}
+		this.presentLayer = presentLayer;
+	}
+	
+	/** @param Size */
+	public void setSize(Dimension Size) {			// 크기조정
+		this.size = Size;
+		canvas.setSize(Size);
+		canvas.createBufferStrategy(2);
+		bufferStrategy = canvas.getBufferStrategy();
+		frm.setBounds(0, 0, Size.width, Size.height);
+	}
+	
+	/** @param root */
+	public void setStage(Stage root) {
+		this.stages[presentLayer] = root;
+	}
+
+	/**
+	 * 
+	 */
+	public void stopTheWorld() {
+		play = false;
+	}
+}

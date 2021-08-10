@@ -1,0 +1,215 @@
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.EventListener;
+
+import com.gmail.sungmin0511a.costume.Costume;
+
+/**
+ * 화면에 표시될 수 있는 모든것의 상위객체입니다. draw(Graphics)매서드로 화면에 그려질 수
+ * 있습니다. 또한, 마우스이벤트를 받아 리스너의 매서드를 호출할 수도 있습니다.
+ * @author 신성민
+ */
+public abstract class Child implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5551784747275550378L;
+	
+	public static boolean overLap(Child child1, Child child2) {
+		if (child1.contains(child2) || child2.contains(child1))
+			return true;
+		else
+			return false;
+	}
+	
+	protected Party belong;
+	protected ArrayList<Costume> costumes;
+	protected ArrayList<EventListener> eventListeners;
+	private boolean mouseOn;
+	
+	public Child() {
+		super();
+		belong = null;
+		eventListeners = new ArrayList<EventListener>();
+		costumes = new ArrayList<Costume>();
+		mouseOn = false;
+	}
+	
+	public void addCostume(Costume costume) {
+		costumes.add(costume);
+	}
+	
+	public void addEventListener(EventListener eventListener) {
+		eventListeners.add(eventListener);
+	}
+	
+	/**
+	 * 이 Child와 주어진 Child가 겹치는지에 대해 확인합니다. 대개 이 Child의 특정한 몇
+	 * 좌표가 주어진 Child에 겹치는지만 확인합니다.
+	 * @param child
+	 *        이 Child와 겹치는지 확인 할 Child입니다.
+	 * @return 만약 두 Child가 겹친다고 판단되면 true를 반환하고, 아니면 false를
+	 *         반환합니다.
+	 */
+	abstract public boolean contains(Child child);
+	
+	/**
+	 * 해당 좌표가 이 Child와 겹치는지 확인합니다. 만약 Child가 그려지는 범위 내에 주어진
+	 * 좌표가 있다면 참값을 반환할 것입니다.
+	 * @param x
+	 *        x좌표입니다.
+	 * @param y
+	 *        y좌표입니다.
+	 * @return 주어진 좌표가 이 Child와 겹친다면, true를 반환하고 아니라면 false를
+	 *         반환합니다.
+	 */
+	public boolean contains(double x, double y) {
+		return contains(new Point((int) x, (int) y));
+	}
+	
+	/**
+	 * 해당 좌표가 이 Child와 겹치는지 확인합니다. 만약 Child가 그려지는 범위 내에 주어진
+	 * 좌표가 있다면 참값을 반환할 것입니다.
+	 * @param x
+	 *        x좌표입니다.
+	 * @param y
+	 *        y좌표입니다.
+	 * @return 주어진 좌표가 이 Child와 겹친다면, true를 반환하고 아니라면 false를
+	 *         반환합니다.
+	 */
+	public boolean contains(int x, int y) {
+		return contains(new Point(x, y));
+	}
+	
+	/**
+	 * 해당 좌표가 이 Child와 겹치는지 확인합니다. 만약 Child가 그려지는 범위 내에 주어진
+	 * 좌표가 있다면 참값을 반환할 것입니다.
+	 * @param point
+	 *        이 Child와 겹치는지 확인할 좌표의 Point입니다.
+	 * @return 주어진 좌표가 이 Child와 겹친다면, true를 반환하고 아니라면 false를
+	 *         반환합니다.
+	 */
+	abstract public boolean contains(Point point);
+	
+	/**
+	 * Graphics에 이 Child를 그립니다.
+	 * @param g
+	 *        이 Child가 그려질 Graphic객체입니다.
+	 */
+	public abstract void draw(Graphics g);
+	
+	/**
+	 * 이 Child가 속해있는 Party를 반환합니다.
+	 * @return 이 Child가 속해있는 Party입니다.
+	 * @see Party
+	 */
+	public Party getBelong() {
+		return belong;
+	}
+	
+	/**
+	 * @param event
+	 * @param mouseType
+	 * @return
+	 */
+	Child processMouseEvent(MouseEvent event, int mouseType) {
+		if (mouseOn == false && contains(event.getPoint())) {
+			mouseOn = true;
+			processMouseEvent(event, MouseEvent.MOUSE_ENTERED);
+		} else if (mouseOn == true && !(contains(event.getPoint()))) {
+			mouseOn = false;
+			event.setSource(this);
+			for (EventListener eventListener : eventListeners) {
+				if (eventListener instanceof MouseListener)
+					((MouseListener) eventListener).mouseExited(event);
+			}
+		}
+		if (mouseOn) {
+			event.setSource(this);
+			// TODO MouseEvent e의 값을 수정하는 부분 추가하기
+			switch (mouseType) {
+				case MouseEvent.MOUSE_CLICKED:
+					for (EventListener eventListener : eventListeners) {
+						if (eventListener instanceof MouseListener)
+							((MouseListener) eventListener).mouseClicked(event);
+					}
+					break;
+				case MouseEvent.MOUSE_ENTERED:
+					for (EventListener eventListener : eventListeners) {
+						if (eventListener instanceof MouseListener)
+							((MouseListener) eventListener).mouseEntered(event);
+					}
+					break;
+				case MouseEvent.MOUSE_EXITED:
+					for (EventListener eventListener : eventListeners) {
+						if (eventListener instanceof MouseListener)
+							((MouseListener) eventListener).mouseExited(event);
+						break;
+					}
+				case MouseEvent.MOUSE_PRESSED:
+					for (EventListener eventListener : eventListeners) {
+						if (eventListener instanceof MouseListener)
+							((MouseListener) eventListener).mousePressed(event);
+						break;
+					}
+				case MouseEvent.MOUSE_RELEASED:
+					for (EventListener eventListener : eventListeners) {
+						if (eventListener instanceof MouseListener)
+							((MouseListener) eventListener).mouseReleased(event);
+					}
+					break;
+				case MouseEvent.MOUSE_MOVED:
+					for (EventListener eventListener : eventListeners) {
+						if (eventListener instanceof MouseMotionListener)
+							((MouseMotionListener) eventListener).mouseMoved(event);
+					}
+					break;
+				case MouseEvent.MOUSE_DRAGGED:
+					for (EventListener eventListener : eventListeners) {
+						if (eventListener instanceof MouseMotionListener)
+							((MouseMotionListener) eventListener).mouseDragged(event);
+					}
+					break;
+				case MouseEvent.MOUSE_WHEEL:
+					for (EventListener eventListener : eventListeners) {
+						if (eventListener instanceof MouseWheelListener)
+							((MouseWheelListener) eventListener)
+									.mouseWheelMoved((MouseWheelEvent) event);
+					}
+					break;
+				default:
+					break;
+			}
+			return this;
+		}
+		return null;
+	}
+	
+	public void removeCostume(Costume costume) {
+		costumes.remove(costume);
+	}
+	
+	/**
+	 * 주어진 Container안에 이 Child를 넣습니다. Container.draw()가 실행될때
+	 * 이 Child의 draw()도 실행됩니다.
+	 * @param belong
+	 *        이 Child가 포함될 Container입니다.
+	 */
+	public void setRoot(Party belong) {
+		this.belong = belong;
+	}
+	
+	@Override
+	public String toString() {
+		try {
+			return super.toString() + " (belong : " + belong.toString() + ")";
+		} catch (NullPointerException ne) {
+			return super.toString();
+		}
+	}
+}

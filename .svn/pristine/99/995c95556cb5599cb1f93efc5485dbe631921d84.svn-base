@@ -1,0 +1,38 @@
+package com.gmail.sungmin0511a.layoutWitch;
+
+import java.io.Serializable;
+
+import com.gmail.sungmin0511a.drawAbles.Child;
+
+/** Child들의 위치를 조정하는 LayoutWitch들의 상위클래스입니다. Layer안의 모든
+ * Child들은 그 Layer의 LayoutWitch에 의해 고유의 Position들이 일대일로
+ * 할당되며, LayoutWitch는 이 Position들의 위치를 변경합니다. 물리엔진의 역할을 겸하는
+ * LayoutWitch도 있습니다.
+ * 
+ * @author 신성민 */
+public interface LayoutWitch extends Serializable {
+	/** 관리하는 Child를 추가합니다.
+	 * 
+	 * @param child */
+	public void addChild(Child child);
+	
+	/** 관리하는 Child를 Ghost로 추가합니다.
+	 * 
+	 * @param child */
+	public void addGhost(Child child);
+	
+	public <E extends LayoutPosition> E getPosition(Child child);
+	
+	/** 각 Child들의 위치를 조정합니다. */
+	public void locate();
+	
+	/** 주어지는 Child를 관리대상에서 제외합니다
+	 * 
+	 * @param child */
+	public void removeChild(Child child);
+	
+	/** 주어지는 Child의 Ghost를 관리대상에서 제외합니다
+	 * 
+	 * @param child */
+	public void removeGhost(Child child);
+}

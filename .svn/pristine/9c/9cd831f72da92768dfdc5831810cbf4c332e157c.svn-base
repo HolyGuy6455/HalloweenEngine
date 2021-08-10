@@ -1,0 +1,43 @@
+package com.gmail.sungmin0511a.layoutWitch;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class PositionPair<E extends LayoutPosition> {
+	@SuppressWarnings("unchecked")
+	public static <E extends LayoutPosition> ArrayList<PositionPair<E>> getPairs(
+			ArrayList<E> positions) {
+		Iterator<E> iterator = positions.iterator();
+		LayoutPosition palette[] = new LayoutPosition[positions.size()];
+		int order = 0;
+		while (iterator.hasNext()) {
+			palette[order++] = iterator.next();
+		}
+		ArrayList<PositionPair<E>> result = new ArrayList<PositionPair<E>>();
+		for (int i = 0; i < palette.length; i++)
+			for (int j = i + 1; j < palette.length; j++)
+				result.add(new PositionPair<E>((E) palette[i], (E) palette[j]));
+		return result;
+	}
+
+	private E position1, position2;
+
+	public PositionPair(E position1, E position2) {
+		this.position1 = position1;
+		this.position2 = position2;
+	}
+
+	public E getPosition1() {
+		return position1;
+	}
+
+	public E getPosition2() {
+		return position2;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " [position1 : " + position1.toString() + ", position2 : "
+				+ position2.toString() + "]";
+	}
+}

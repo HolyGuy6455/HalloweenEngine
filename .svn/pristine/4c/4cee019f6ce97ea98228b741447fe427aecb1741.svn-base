@@ -1,0 +1,79 @@
+package com.gmail.sungmin0511a.layoutWitch;
+
+import java.awt.geom.Point2D;
+
+import com.gmail.sungmin0511a.costume.Location;
+import com.gmail.sungmin0511a.drawAbles.Child;
+import com.gmail.sungmin0511a.etc.ValueException;
+import com.gmail.sungmin0511a.layoutWitch.OceanballWitch.OceanballPosition;
+
+public class OceanballWitch extends LayoutWitch<OceanballPosition> {
+	public class OceanballPosition extends LayoutPosition {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 4992260749088228531L;
+		int attractive;
+		Location location;
+		int objectX, objectY;
+		int speed;
+		int x, y;
+		
+		/** @param child
+		 * @param x
+		 * @param y */
+		public OceanballPosition(Child child, int x, int y) {
+			super(child);
+			this.x = objectX = x;
+			this.y = objectY = y;
+			attractive = 800;
+			child.addCostume(location = new Location(x, y));
+		}
+
+		public void moveTo(int x, int y) {
+			this.objectX = x;
+			this.objectY = y;
+		}
+		
+		public void setSpeed(int attractive) throws ValueException {
+			if (attractive <= 1000 && attractive >= 0)
+				this.attractive = attractive;
+			else
+				throw new ValueException(ValueException.ExceptionKey.Between, 0, 1000);
+		}
+
+		@Override
+		protected void post() {
+			double distance = Point2D.distance(x, y, objectX, objectY);
+			if (distance > speed) {
+				x += speed * (objectX - x) / distance;
+				y += speed * (objectY - y) / distance;
+			} else {
+				x = objectX;
+				y = objectY;
+			}
+			location.setX((this.x - location.getX()) * this.attractive / 1000);
+			location.setX((this.y - location.getY()) * this.attractive / 1000);
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5546573374413757772L;
+
+	@Override
+	public void addChild(Child child) {
+		positions.put(child, new OceanballPosition(child, 0, 0));
+	}
+	
+	@Override
+	public void addChild(Child child, Object option) {
+		addChild(child);
+	}
+	
+	@Override
+	protected void sortChilds() {
+		// TODO LayoutWitch<OceanballPosition>.sortChilds()
+	}
+}

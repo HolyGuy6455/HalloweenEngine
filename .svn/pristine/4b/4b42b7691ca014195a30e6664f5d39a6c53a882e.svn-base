@@ -1,0 +1,116 @@
+/**
+ * 
+ */
+package com.gmail.sungmin0511a.layoutWitch;
+
+import com.gmail.sungmin0511a.drawAbles.Child;
+
+/** @author ½Å¼º¹Î */
+public class FallingWitch implements LayoutWitch {
+	/** @author ½Å¼º¹Î */
+	public class FallingGhost extends LayoutGhost {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 8979201792467239665L;
+
+		/** @param child */
+		public FallingGhost(Child child) {
+			super(child);
+			// TODO FallingGhost Constructor
+		}
+		
+		/* (non-Javadoc)
+		 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch.Position#post()
+		 */
+		@Override
+		protected void post() {
+			// TODO FallingGhost.post
+		}
+	}
+	
+	/** @author ½Å¼º¹Î */
+	public class FallingPosition extends LayoutPosition {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 5332069775528123593L;
+
+		/** @param child */
+		public FallingPosition(Child child) {
+			super(child);
+			// TODO FallingPosition Constructor
+		}
+		
+		/* (non-Javadoc)
+		 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch.Position#findOverlapedGhost()
+		 */
+		@Override
+		protected void findOverlapedGhost() {
+			// TODO FallingPosition.findOverlapedGhost
+		}
+		
+		/* (non-Javadoc)
+		 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch.Position#post()
+		 */
+		@Override
+		protected void post() {
+			// TODO FallingPosition.post
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5970640410811032653L;
+
+	/**
+	 * 
+	 */
+	public FallingWitch() {
+		// TODO FallingWitch Constructor
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#addChild(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public void addChild(Child child) {
+		// TODO FallingWitch.addChild
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#addGhost(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public void addGhost(Child child) {
+		// TODO FallingWitch.addGhost
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#removeChild(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public void removeChild(Child child) {
+		// TODO FallingWitch.removeChild
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.gmail.sungmin0511a.layoutWitch.LayoutWitch#removeGhost(com.gmail.sungmin0511a.drawAbles.Child)
+	 */
+	@Override
+	public void removeGhost(Child child) {
+		// TODO FallingWitch.removeGhost
+	}
+	
+	@Override
+	public <E extends LayoutPosition> E getPosition(Child child) {
+		return null;
+		// TODO LayoutWitch.getPosition()
+	}
+	
+	@Override
+	public void locate() {
+		// TODO LayoutWitch.locate()
+	}
+}

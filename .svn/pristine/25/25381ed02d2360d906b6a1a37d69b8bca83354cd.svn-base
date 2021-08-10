@@ -1,0 +1,135 @@
+package com.gmail.sungmin0511a.layoutWitch;
+
+import java.util.*;
+
+import com.gmail.sungmin0511a.costume.Location;
+import com.gmail.sungmin0511a.costume.Scale;
+import com.gmail.sungmin0511a.drawAbles.Child;
+import com.gmail.sungmin0511a.drawAbles.Stage;
+import com.gmail.sungmin0511a.layoutWitch.PerspectiveWitch.PerspectivePosition;
+
+public class PerspectiveWitch extends LayoutWitch<PerspectivePosition> {
+	public class PerspectivePosition extends LayoutPosition {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -3261190331505657532L;
+		double depth;
+		Location location;
+		Scale scale;
+		double x;
+		double y;
+		
+		public PerspectivePosition(Child child) {
+			super(child);
+			location = new Location();
+			scale = new Scale();
+			child.addCostume(scale);
+			child.addCostume(location);
+		}
+		
+		/** @return the depth */
+		public double getDepth() {
+			return depth;
+		}
+		
+		/** @return the x */
+		public double getX() {
+			return x;
+		}
+		
+		/** @return the y */
+		public double getY() {
+			return y;
+		}
+		
+		/** @param depth
+		 *        the depth to set */
+		public void setDepth(double depth) {
+			this.depth = depth;
+		}
+		
+		/** @param x
+		 *        the x to set */
+		public void setX(double x) {
+			this.x = x;
+		}
+		
+		/** @param y
+		 *        the y to set */
+		public void setY(double y) {
+			this.y = y;
+		}
+
+		@Override
+		protected void post() {
+			location.set(x - totalLocationX, y - totalLocationY);
+			scale.setScale(1.0 / depth);
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2784835417339166223L;
+	Map<Child, PerspectivePosition> positions;
+	Stage stage;
+	double totalLocationX;
+	double totalLocationY;
+
+	public PerspectiveWitch() {
+		positions = new HashMap<Child, PerspectivePosition>();
+		totalLocationX = 0.0;
+		totalLocationY = 0.0;
+	}
+	
+	@Override
+	public void addChild(Child child) {
+		positions.put(child, new PerspectivePosition(child));
+	}
+
+	/** @return the totalLocationX */
+	public double getTotalLocationX() {
+		return totalLocationX;
+	}
+	
+	/** @return the totalLocationY */
+	public double getTotalLocationY() {
+		return totalLocationY;
+	}
+	
+	/** @param totalLocationX
+	 *        the totalLocationX to set */
+	public void setTotalLocationX(double totalLocationX) {
+		this.totalLocationX = totalLocationX;
+	}
+	
+	/** @param totalLocationY
+	 *        the totalLocationY to set */
+	public void setTotalLocationY(double totalLocationY) {
+		this.totalLocationY = totalLocationY;
+	}
+	
+	@Override
+	protected void sortChilds() {
+		LinkedList<Child> childs = stage.getMembers();
+		try {
+			synchronized (childs) {
+				Collections.sort(childs, new Comparator<Child>() {
+					@Override
+					public int compare(Child child1, Child child2) {
+						double result = ((PerspectivePosition) child2.getPosition()).depth
+										- ((PerspectivePosition) child1.getPosition()).depth;
+						if (result > 0)
+							return 1;
+						else if (result < 0)
+							return -1;
+						else
+							return 0;
+					}
+				});
+			}
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+}

@@ -1,0 +1,61 @@
+package com.gmail.sungmin0511a.drawAbles;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
+
+public class RectangleShapedChild extends Child {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 278006323999788971L;
+	protected Dimension bounds;
+	protected Color color;
+
+	public RectangleShapedChild(Point location, Dimension bounds) {
+		super(location);
+		color = Color.black;
+		this.bounds = bounds;
+	}
+
+	@Override
+	public boolean contains(Child child) {
+		Point location = getLocation();
+		if (child.contains(new Point(location.x, location.y))
+			|| child.contains(new Point(location.x + bounds.width, location.y))
+			|| child.contains(new Point(location.x + bounds.width, location.y + bounds.height))
+			|| child.contains(new Point(location.x, location.y + bounds.height))) {
+			return true;
+		} else
+			return false;
+	}
+
+	@Override
+	public boolean contains(Point point) {
+		if ((point.x > getLocation().x && point.x <= getLocation().x + bounds.width)
+			&& (point.y > getLocation().y && point.y <= getLocation().y + bounds.height)) {
+			return true;
+		} else
+			return false;
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		g.setColor(color);
+		Point global = GlobalLocation();
+		g.fillRect(location.x + global.x, location.y + global.x, bounds.width, bounds.height);
+	}
+
+	public Dimension getBounds() {
+		return bounds;
+	}
+
+	public void setBounds(Dimension bounds) {
+		this.bounds = bounds;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+}

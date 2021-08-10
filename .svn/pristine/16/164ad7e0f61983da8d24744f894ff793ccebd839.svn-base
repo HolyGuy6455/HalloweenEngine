@@ -1,0 +1,140 @@
+package com.gmail.sungmin0511a.layoutWitch;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.gmail.sungmin0511a.drawAbles.Child;
+import com.gmail.sungmin0511a.gameEvent.OverlapListener;
+
+/**
+ * Child들의 위치를 조정하는 LayoutWitch들의 상위클래스입니다. Layer안의 모든 Child들은 그 Layer의
+ * LayoutWitch에 의해 고유의 Position들이 일대일로 할당되며, LayoutWitch는 이 Position들의 위치를
+ * 변경합니다. 물리엔진의 역할을 겸하는 LayoutWitch도 있습니다.
+ * 
+ * @author 신성민
+ */
+public abstract class LayoutWitch implements Serializable {
+	public abstract class Ghost extends Position {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 7941030188690823583L;
+		protected boolean overlap;
+
+		public Ghost(Child child) {
+			super(child);
+		}
+
+		@Override
+		protected void findOverlapedGhost() {
+
+		}
+
+		public boolean isOverlap() {
+			return overlap;
+		}
+		
+		public void setOverlap(boolean overlap) {
+			this.overlap = overlap;
+		}
+
+	}
+
+	public abstract class Position implements Serializable {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 3730769389301543863L;
+		protected ArrayList<OverlapListener> overlapListeners;
+		private Child posedChild;
+
+		public Position(Child child) {
+			posedChild = child;
+			overlapListeners = new ArrayList<OverlapListener>();
+		}
+
+		public void addOverlapListener(OverlapListener overlapListener) {
+			overlapListeners.add(overlapListener);
+		}
+
+		protected abstract void findOverlapedGhost();
+
+		public Child getChild() {
+			return posedChild;
+		}
+
+		protected abstract void post();
+
+		public void setChild(Child posedChild) {
+			this.posedChild = posedChild;
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3167001664601271563L;
+
+	ArrayList<? extends Position> positions;
+	
+	/**
+	 * 관리하는 Child를 추가합니다.
+	 * 
+	 * @param child
+	 */
+	abstract public void addChild(Child child);
+	
+	/**
+	 * 관리하는 Child를 Ghost로 추가합니다.
+	 * 
+	 * @param child
+	 */
+	abstract public void addGhost(Child child);
+
+	@SuppressWarnings("unchecked")
+	public <E extends Position> E getPosition(Child child) {
+		Iterator<? extends Position> iterator;
+		try {
+			iterator = positions.iterator();
+		} catch (NullPointerException e) {
+			return null;
+		}
+		while (iterator.hasNext()) {
+			Position position = iterator.next();
+			if (position.getChild().equals(child))
+				return (E) position;
+		}
+		return null;
+	}
+	
+	/**
+	 * 각 Child들의 위치를 조정합니다.
+	 */
+	public void locate() {
+		try {
+			Iterator<? extends Position> iterator = positions.iterator();
+			while (iterator.hasNext()) {
+				iterator.next().post();
+			}
+		} catch (NullPointerException e) {
+			// System.out.println("e " + e.getMessage());
+			// System.out.println("p " + positions);
+		}
+	}
+	
+	/**
+	 * 주어지는 Child를 관리대상에서 제외합니다
+	 * 
+	 * @param child
+	 */
+	abstract public void removeChild(Child child);
+	
+	/**
+	 * 주어지는 Child의 Ghost를 관리대상에서 제외합니다
+	 * 
+	 * @param child
+	 */
+	abstract public void removeGhost(Child child);
+}
