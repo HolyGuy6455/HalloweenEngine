@@ -27,7 +27,7 @@ public abstract class LayoutPosition implements Serializable {
 	@Override
 	protected void finalize() throws Throwable {
 		forgot();
-		super.finalize();
+		// super.finalize();
 	}
 
 	protected abstract void post();
